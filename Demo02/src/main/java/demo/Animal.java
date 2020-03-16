@@ -15,7 +15,6 @@ public abstract class Animal implements Actions {
     private double age;
     private int purity;
     private boolean isItSick;
-    private String name;
 
 
     public Animal() {
@@ -29,7 +28,7 @@ public abstract class Animal implements Actions {
 
     @Override
     public void toFeed() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
-        healthPoint += 2;//add methods increase health
+        changeHealthPoint(2, true);//add methods increase health
         happiness += 1;
         satiety += 10;
         age += 0.2;
@@ -45,6 +44,7 @@ public abstract class Animal implements Actions {
 
     @Override
     public void toScold() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
+        changeHealthPoint(2, false);
         healthPoint -= 2;
         happiness -= 2;
         satiety -= 1;
@@ -52,9 +52,26 @@ public abstract class Animal implements Actions {
         check_stage();
     }
 
+    /**
+     * This method changes field {@code healthPoint}.
+     * If add true, digit will added to {@code healthPoint},
+     * else digit will subscribe
+     * @param digit Digit which need to add or subscribe
+     * @param add   True if need to add, False if need to subscribe
+     */
+    private void changeHealthPoint(int digit, boolean add) {
+        if (healthPoint < MAX_HEALTH_POINT) {
+            if (add) {
+                healthPoint += digit;
+            }else{
+                healthPoint -= digit;
+            }
+        }
+    }
+
     @Override
     public void toStroke() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
-        healthPoint -= 2;
+        changeHealthPoint(2, false);
         happiness += 2;
         satiety -= 1;
         age += 0.2;
@@ -63,15 +80,15 @@ public abstract class Animal implements Actions {
 
     @Override
     public void toWash() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
-        healthPoint += 2;
+        changeHealthPoint(2, true);
         satiety -= 1;
         age += 0.2;
         purity += 3;
         check_stage();
     }
-    
+
     @Override
-    public void toHeal()  throws PetGrewUpException, PetDiedException  {
+    public void toHeal() throws PetGrewUpException, PetDiedException {
 
     }
 
@@ -83,7 +100,6 @@ public abstract class Animal implements Actions {
             throw new PetGrewUpException("Congratulations! Your pet has been grew up! \n Game over.");
         }
     }
-
 
 
     public int getHealthPoint() {
@@ -105,9 +121,6 @@ public abstract class Animal implements Actions {
     public int getPurity() {
         return purity;
     }
-
-
-
 
 
 }
