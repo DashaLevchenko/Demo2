@@ -43,20 +43,32 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toScold() {
-
+    public void toScold() throws PetGrewUpException, PetDiedException {
+        healthPoint -= 2;
+        happiness -= 2;
+        satiety -= 1;
+        age += 0.2;
+        check_stage();
     }
 
     @Override
-    public void toStroke() {
-
+    public void toStroke() throws PetGrewUpException, PetDiedException {
+        healthPoint -= 2;
+        happiness += 2;
+        satiety -= 1;
+        age += 0.2;
+        check_stage();
     }
 
     @Override
-    public void toWash() {
-
+    public void toWash() throws PetGrewUpException, PetDiedException {
+        healthPoint += 2;
+        satiety -= 1;
+        age += 0.2;
+        purity += 3;
+        check_stage();
     }
-
+    
     @Override
     public void toHeal() {
 
