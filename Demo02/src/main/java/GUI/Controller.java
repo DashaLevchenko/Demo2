@@ -94,7 +94,7 @@ public class Controller {
     }
 
     @FXML
-    void toFeedButton() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException, PetNeedsSomethingException {
+    void toFeedButton() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException {
         cat.toFeed();
         changeImageAndProgresses(eatImage);
     }
