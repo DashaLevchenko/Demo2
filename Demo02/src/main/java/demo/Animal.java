@@ -28,13 +28,13 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toFeed() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
+    public void toFeed() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException, OopsYourShoesIsWetException {
         healthPoint += 2;//add methods increase health
         happiness += 1;
         satiety += 10;
         age += 0.2;
         purity -= 2;
-        check_stage(); //have to be static...
+        check_stage();
 
     }
 
@@ -44,7 +44,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toScold() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
+    public void toScold() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException, OopsYourShoesIsWetException {
         healthPoint -= 2;
         happiness -= 2;
         satiety -= 1;
@@ -53,7 +53,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toStroke() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
+    public void toStroke() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException, OopsYourShoesIsWetException {
         healthPoint -= 2;
         happiness += 2;
         satiety -= 1;
@@ -62,7 +62,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toWash() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException {
+    public void toWash() throws PetGrewUpException, PetDiedException, PocheshiPuzikoException, PetWantsToPalyException, PetIsDirtyException, PetIsIllException, PetIsHungryException, OopsYourShoesIsWetException {
         healthPoint += 2;
         satiety -= 1;
         age += 0.2;
@@ -75,12 +75,30 @@ public abstract class Animal implements Actions {
 
     }
 
-    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsDirtyException, PetIsIllException, PetWantsToPalyException, PocheshiPuzikoException {
+    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsDirtyException, PetIsIllException, PetWantsToPalyException, PocheshiPuzikoException, OopsYourShoesIsWetException {
         if (healthPoint <= MIN_HEALTH_POINT) {
             throw new PetDiedException("Your pet is dead. Game over.");
         }
         if (age > MAX_AGE) {
             throw new PetGrewUpException("Congratulations! Your pet has been grew up! \n Game over.");
+        }
+        if (satiety<10){
+            throw new PetIsHungryException("I'm hungry!");
+        }
+        if (isItSick && healthPoint<20){
+            throw new PetIsIllException("Something wrong, I'm feeling bad...");
+        }
+        if (purity<=6){
+            throw new PetIsDirtyException("I'm dirty. You know what to do!)");
+        }
+        if (happiness<5){
+            throw new PetWantsToPalyException("Play with me or your shoes will suffer!");
+        }
+        if (happiness< 7){
+            throw new PocheshiPuzikoException("Purrr! Scratch my tummy!");
+        }
+        if (happiness<4 || satiety<15){
+            throw new OopsYourShoesIsWetException("Oops! Your shoes is wet...");
         }
     }
 
