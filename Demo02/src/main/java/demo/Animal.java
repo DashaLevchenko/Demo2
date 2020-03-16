@@ -64,6 +64,12 @@ public abstract class Animal implements Actions {
         check_stage();
     }
 
+    /**
+     *
+     * @throws PetDiedException
+     * @throws PetGrewUpException
+     * @throws PetNeedsSomethingException
+     */
     @Override
     public void toWash() throws PetDiedException, PetGrewUpException, PetNeedsSomethingException
     {
@@ -73,6 +79,7 @@ public abstract class Animal implements Actions {
         changePurity(3, true);
         check_stage();
     }
+
 
     @Override
     public void toHeal() throws PetGrewUpException, PetDiedException {
@@ -105,7 +112,7 @@ public abstract class Animal implements Actions {
         if (getHappiness() < 4 || getSatiety() < 15) {
             throw new PetNeedsSomethingException("Oops! Your shoes is wet...");
         }
-        /**/
+
     }
     /**
      * This method changes field {@code healthPoint}.
