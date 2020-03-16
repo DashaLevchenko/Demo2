@@ -1,6 +1,8 @@
 package demo;
 
 
+import java.util.logging.MemoryHandler;
+
 public abstract class Animal implements Actions {
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
@@ -91,13 +93,15 @@ public abstract class Animal implements Actions {
      * @param add   True if need to add, False if need to subscribe
      */
     private void changeHealthPoint(int digit, boolean add) {
-        if (healthPoint < MAX_HEALTH_POINT) {
-            if (add) {
-                healthPoint += digit;
-            }else{
-                healthPoint -= digit;
-            }
+        int newValue;
+
+        if (add) {
+            newValue = healthPoint + digit;
+        }else{
+            newValue = healthPoint - digit;
         }
+
+        healthPoint = Math.min(newValue, MAX_HEALTH_POINT);
     }
 
     /**
@@ -108,13 +112,15 @@ public abstract class Animal implements Actions {
      * @param add   True if need to add, False if need to subscribe
      */
     private void changeHappiness(int digit, boolean add) {
-        if (happiness < MAX_HAPPINESS) {
-            if (add) {
-                happiness += digit;
-            }else{
-                happiness -= digit;
-            }
+        int newValue;
+
+        if (add) {
+            newValue = happiness + digit;
+        }else{
+            newValue = happiness - digit;
         }
+
+        happiness = Math.min(newValue, MAX_HAPPINESS);
     }
 
     /**
@@ -125,13 +131,15 @@ public abstract class Animal implements Actions {
      * @param add   True if need to add, False if need to subscribe
      */
     private void changeSatiety(int digit, boolean add) {
-        if (happiness < MAX_SATIETY) {
-            if (add) {
-                satiety += digit;
-            }else{
-                satiety -= digit;
-            }
+        int newValue;
+
+        if (add) {
+            newValue = satiety + digit;
+        }else{
+            newValue = satiety - digit;
         }
+
+        satiety = Math.min(newValue, MAX_SATIETY);
     }
     /**
      * This method changes field {@code purity}.
@@ -141,17 +149,18 @@ public abstract class Animal implements Actions {
      * @param add   True if need to add, False if need to subscribe
      */
     private void changePurity(int digit, boolean add) {
-        if (purity < MAX_PURITY) {
-            if (add) {
-                purity += digit;
-            }else{
-                purity -= digit;
-            }
+        int newValue;
+
+        if (add) {
+            newValue = purity + digit;
+        }else{
+            newValue = purity - digit;
         }
+        purity = Math.min(newValue, MAX_PURITY);
     }
 
     private void changeAge() {
-        if (happiness < MAX_AGE) {
+        if (age < MAX_AGE) {
                 age += 0.2;
         }
     }
