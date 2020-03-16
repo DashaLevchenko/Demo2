@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class Controller {
 
@@ -64,39 +63,62 @@ public class Controller {
     private Image defaultImage = new Image("GUI/static/img/start.png");
 
     private Image eatImage = new Image("GUI/static/img/eat.png");
-    private Image playImage = new Image("GUI/static/img/play.png");
+//    private Image playImage = new Image("GUI/static/img/play.png");
 //    private Image washImage = new Image("GUI/static/img/start.png");
 //    private Image defaultImage = new Image("GUI/static/img/start.png");
 
     @FXML
-    void toScoldButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void toWashButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void toPlayButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void toHealButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void toStrokeButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void toFeedButton() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException, PetNeedsSomethingException {
-        cat.toFeed();
+    void toScoldButton() throws PetDiedException, PetNeedsSomethingException, PetGrewUpException {
+        cat.toScold();
         changeImageAndProgresses(eatImage);
+    }
+
+    @FXML
+    void toWashButton() throws PetDiedException, PetNeedsSomethingException, PetGrewUpException {
+        cat.toWash();
+        changeImageAndProgresses(eatImage);
+    }
+
+    @FXML
+    void toPlayButton() throws PetGrewUpException, PetDiedException {
+        cat.toPlay();
+        changeImageAndProgresses(eatImage);
+    }
+
+    @FXML
+    void toHealButton()  {
+        cat.toHeal();
+        changeImageAndProgresses(eatImage);
+    }
+
+    @FXML
+    void toStrokeButton() throws PetDiedException, PetNeedsSomethingException, PetGrewUpException {
+        cat.toStroke();
+        changeImageAndProgresses(eatImage);
+    }
+
+    @FXML
+    void toFeedButton() {
+        try {
+            cat.toFeed();
+        } catch (PetGrewUpException | PetDiedException | PetNeedsSomethingException e) {
+            e.printStackTrace();
+        }
+
+        changeImageAndProgresses(eatImage);
+    }
+
+
+    @FXML
+    void cancelButtonPressed() {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void hideButtonPressed() {
+        Stage stage = (Stage) hideButton.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     private void changeImageAndProgresses(Image image) {
@@ -133,18 +155,5 @@ public class Controller {
                     changeProgressBarValue(cat.getAge(), Cat.MAX_AGE, age, ageNumbers);
                     changeProgressBarValue(cat.getPurity(), Cat.MAX_PURITY, purity, purityNumbers);
                 });
-    }
-
-
-    @FXML
-    void cancelButtonPressed() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void hideButtonPressed() {
-        Stage stage = (Stage) hideButton.getScene().getWindow();
-        stage.setIconified(true);
     }
 }
