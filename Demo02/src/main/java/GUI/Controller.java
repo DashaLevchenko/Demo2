@@ -74,26 +74,42 @@ public class Controller {
     }
 
     @FXML
-    void toWashButton() throws PetDiedException, PetNeedsSomethingException, PetGrewUpException {
-        cat.toWash();
+    void toWashButton()  {
+        try {
+            cat.toWash();
+        } catch (PetDiedException | PetGrewUpException | PetNeedsSomethingException e) {
+            System.out.println(e.getMessage());
+        }
         changeImageAndProgresses(eatImage);
     }
 
     @FXML
-    void toPlayButton() throws PetGrewUpException, PetDiedException {
-        cat.toPlay();
+    void toPlayButton(){
+        try {
+            cat.toPlay();
+        }  catch (PetDiedException | PetGrewUpException e) {
+            System.out.println(e.getMessage());
+        }
         changeImageAndProgresses(eatImage);
     }
 
     @FXML
-    void toHealButton() throws PetGrewUpException, PetDiedException {
-        cat.toHeal();
+    void toHealButton()  {
+        try {
+            cat.toHeal();
+        } catch (PetDiedException | PetGrewUpException  e) {
+            System.out.println(e.getMessage());
+        }
         changeImageAndProgresses(eatImage);
     }
 
     @FXML
-    void toStrokeButton() throws PetDiedException, PetNeedsSomethingException, PetGrewUpException {
-        cat.toStroke();
+    void toStrokeButton() {
+        try {
+            cat.toStroke();
+        }  catch (PetDiedException | PetGrewUpException | PetNeedsSomethingException e) {
+            System.out.println(e.getMessage());
+        }
         changeImageAndProgresses(eatImage);
     }
 
@@ -102,7 +118,7 @@ public class Controller {
         try {
             cat.toFeed();
         } catch (PetGrewUpException | PetDiedException | PetNeedsSomethingException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         changeImageAndProgresses(eatImage);
