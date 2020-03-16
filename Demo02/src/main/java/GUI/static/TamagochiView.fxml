@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="677.0" style="-fx-background-color: #dbb8da;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <AnchorPane layoutX="24.0" layoutY="31.0" prefHeight="107.0" prefWidth="643.0">
+      <AnchorPane layoutX="20.0" layoutY="50.0" prefHeight="107.0" prefWidth="643.0">
          <children>
             <Group>
                <children>
@@ -47,6 +47,11 @@
                   <ProgressBar fx:id="purity" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
                </children>
             </Group>
+            <Label fx:id="healthNumber" layoutX="206.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+            <Label fx:id="ageNumbers" layoutX="396.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/5" AnchorPane.leftAnchor="396.0" />
+            <Label fx:id="happinessNumbers" layoutX="210.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="15/10" textAlignment="RIGHT" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+            <Label fx:id="satietyNumbers" layoutX="206.0" layoutY="98.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+            <Label fx:id="purityNumbers" layoutX="396.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/10" AnchorPane.leftAnchor="402.0" />
          </children>
       </AnchorPane>
       <Button layoutX="5.0" layoutY="333.0" mnemonicParsing="false" onAction="#toScoldButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Scold">
@@ -106,5 +111,7 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <Button fx:id="cancelButton" layoutX="643.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+      <Button fx:id="hideButton" layoutX="610.0" layoutY="2.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
    </children>
 </AnchorPane>

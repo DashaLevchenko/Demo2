@@ -13,8 +13,6 @@
 .button_actions:hover{
 -fx-background-color: #e3fa5f;
 -fx-background-radius: 100px;
--fx-font-family:"Comic Sans MS";
--fx-font-size: 18px;
 -fx-text-fill: #0e2b02;
 -fx-border-color: #33ff69;
 -fx-border-width: 5px;
@@ -44,9 +42,35 @@
 
 }
 
-.label_progress{
+
+.label_progress, .label_progress_number{
 -fx-font-family:"Comic Sans MS";
 -fx-font-size: 15px;
+-fx-text-fill: #b35900;
+
+}
+
+.close_and_hide_button{
+-fx-background-color: #33ff69;
+-fx-background-radius: 100px;
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 8px;
 -fx-text-fill: #0e2b02;
-	
+-fx-border-color: #e3fa5f;
+-fx-border-width: 5px;
+-fx-border-radius: 100px;
+}
+
+.close_and_hide_button:hover{
+-fx-background-color: #e3fa5f;
+-fx-background-radius: 100px;
+-fx-text-fill: #0e2b02;
+-fx-border-color: #33ff69;
+-fx-border-width: 5px;
+-fx-border-radius: 100px;
+}
+.close_and_hide_button:pressed{
+-fx-background-color: #084003;
+-fx-border-color: #e3fa5f;
+-fx-text-fill: #e3fa5f;
 }
