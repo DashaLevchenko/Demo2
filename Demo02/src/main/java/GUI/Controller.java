@@ -1,8 +1,6 @@
 package GUI;
 
-import demo.Cat;
-import demo.PetDiedException;
-import demo.PetGrewUpException;
+import demo.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -96,7 +94,7 @@ public class Controller {
     }
 
     @FXML
-    void toFeedButton() throws PetGrewUpException, PetDiedException {
+    void toFeedButton() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
         cat.toFeed();
         changeImageAndProgresses(eatImage);
     }
