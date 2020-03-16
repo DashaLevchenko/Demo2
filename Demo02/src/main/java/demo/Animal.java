@@ -85,7 +85,25 @@ public abstract class Animal implements Actions {
         if (age > MAX_AGE) {
             throw new PetGrewUpException("Congratulations! Your pet has been grew up! \n Game over.");
         }
-        throw new PetNeedsSomethingException(this);
+
+        if (getSatiety() < 10) {
+            throw new PetNeedsSomethingException("I'm hungry!");
+        }
+        if (getisItSick() && getHealthPoint() < 20) {
+            throw new PetNeedsSomethingException("Something wrong, I'm feeling bad...");
+        }
+        if (getPurity() <= 6) {
+            throw new PetNeedsSomethingException("I'm dirty. You know what to do!)");
+        }
+        if (getHappiness() < 5) {
+            throw new PetNeedsSomethingException("Play with me or your shoes will suffer!");
+        }
+        if (getHappiness() < 7) {
+            throw new PetNeedsSomethingException("Purrr! Scratch my tummy!");
+        }
+        if (getHappiness() < 4 || getSatiety() < 15) {
+            throw new PetNeedsSomethingException("Oops! Your shoes is wet...");
+        }
         /**/
     }
     /**
