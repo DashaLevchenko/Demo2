@@ -1,7 +1,7 @@
 package demo;
 
 public class PetGrewUpException extends Exception {
-    PetGrewUpException(String message){
+    PetGrewUpException(String message) {
         super(message);
     }
 }

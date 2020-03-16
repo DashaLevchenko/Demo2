@@ -86,7 +86,7 @@ public class Controller {
     }
 
     @FXML
-    void toHealButton()  {
+    void toHealButton() throws PetGrewUpException, PetDiedException {
         cat.toHeal();
         changeImageAndProgresses(eatImage);
     }

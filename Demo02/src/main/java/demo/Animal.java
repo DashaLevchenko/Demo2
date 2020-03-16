@@ -1,8 +1,6 @@
 package demo;
 
 
-import java.util.logging.MemoryHandler;
-
 public abstract class Animal implements Actions {
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
@@ -46,7 +44,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toScold() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException{
+    public void toScold() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException {
         changeHealthPoint(2, false);
         changeHappiness(2, false);
         changeSatiety(1, false);
@@ -56,7 +54,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toStroke() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException{
+    public void toStroke() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException {
         changeHealthPoint(2, false);
         changeHappiness(2, true);
         changeSatiety(1, false);
@@ -71,8 +69,7 @@ public abstract class Animal implements Actions {
      * @throws PetNeedsSomethingException
      */
     @Override
-    public void toWash() throws PetDiedException, PetGrewUpException, PetNeedsSomethingException
-    {
+    public void toWash() throws PetDiedException, PetGrewUpException, PetNeedsSomethingException {
         changeHealthPoint(2, true);
         changeSatiety(1, false);
         changeAge();
@@ -114,10 +111,12 @@ public abstract class Animal implements Actions {
         }
 
     }
+
     /**
      * This method changes field {@code healthPoint}.
      * If add true, digit will added to {@code healthPoint},
      * else digit will subscribe
+     *
      * @param digit Digit which need to add or subscribe
      * @param add   True if need to add, False if need to subscribe
      */
@@ -126,7 +125,7 @@ public abstract class Animal implements Actions {
 
         if (add) {
             newValue = healthPoint + digit;
-        }else{
+        } else {
             newValue = healthPoint - digit;
         }
 
@@ -137,6 +136,7 @@ public abstract class Animal implements Actions {
      * This method changes field {@code happiness}.
      * If add true, digit will added to {@code happiness},
      * else digit will subscribe
+     *
      * @param digit Digit which need to add or subscribe
      * @param add   True if need to add, False if need to subscribe
      */
@@ -145,7 +145,7 @@ public abstract class Animal implements Actions {
 
         if (add) {
             newValue = happiness + digit;
-        }else{
+        } else {
             newValue = happiness - digit;
         }
 
@@ -156,6 +156,7 @@ public abstract class Animal implements Actions {
      * This method changes field {@code satiety}.
      * If add true, digit will added to {@code satiety},
      * else digit will subscribe
+     *
      * @param digit Digit which need to add or subscribe
      * @param add   True if need to add, False if need to subscribe
      */
@@ -164,16 +165,18 @@ public abstract class Animal implements Actions {
 
         if (add) {
             newValue = satiety + digit;
-        }else{
+        } else {
             newValue = satiety - digit;
         }
 
         satiety = Math.min(newValue, MAX_SATIETY);
     }
+
     /**
      * This method changes field {@code purity}.
      * If add true, digit will added to {@code purity},
      * else digit will subscribe
+     *
      * @param digit Digit which need to add or subscribe
      * @param add   True if need to add, False if need to subscribe
      */
@@ -182,7 +185,7 @@ public abstract class Animal implements Actions {
 
         if (add) {
             newValue = purity + digit;
-        }else{
+        } else {
             newValue = purity - digit;
         }
         purity = Math.min(newValue, MAX_PURITY);
@@ -190,7 +193,7 @@ public abstract class Animal implements Actions {
 
     private void changeAge() {
         if (age < MAX_AGE) {
-                age += 0.2;
+            age += 0.2;
         }
     }
 
@@ -213,6 +216,7 @@ public abstract class Animal implements Actions {
     public int getPurity() {
         return purity;
     }
+
     public boolean getisItSick() {
         return isItSick;
     }
