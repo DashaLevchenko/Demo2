@@ -111,7 +111,6 @@ public abstract class Animal implements Actions {
         if (getHappiness() < 4 || getSatiety() < 15) {
             throw new PetNeedsSomethingException("Oops! Your shoes is wet...");
         }
-
     }
 
     /**

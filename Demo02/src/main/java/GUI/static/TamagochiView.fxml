@@ -15,7 +15,7 @@
    <children>
       <AnchorPane fx:id="anchorPaneWithInterface" disable="true" layoutX="5.0" layoutY="2.0" prefHeight="587.0" prefWidth="677.0" styleClass="anchor_pane_with_interface" stylesheets="@style.css">
          <children>
-            <Button fx:id="cancelButton" layoutX="638.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+            <Button fx:id="cancelButton" focusTraversable="false" layoutX="638.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
             <Button layoutY="331.0" mnemonicParsing="false" onAction="#toScoldButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Scold">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
@@ -103,7 +103,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="hideButton" layoutX="605.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+            <Button fx:id="hideButton" focusTraversable="false" layoutX="605.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
             <Button layoutX="572.0" layoutY="233.0" mnemonicParsing="false" onAction="#toPlayButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Play">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
@@ -127,8 +127,8 @@
          <children>
             <Group layoutX="-14.0" layoutY="14.0">
                <children>
-                  <Button layoutX="287.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
-                  <Button layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+                  <Button focusTraversable="false" layoutX="287.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+                  <Button focusTraversable="false" layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
                </children>
             </Group>
             <Button layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#gameOverButtonPressed" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Ok">
@@ -146,11 +146,11 @@
          <children>
             <Group layoutX="-14.0" layoutY="14.0">
                <children>
-                  <Button layoutX="287.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
-                  <Button layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+                  <Button focusTraversable="false" layoutX="287.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+                  <Button focusTraversable="false" layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
                </children>
             </Group>
-            <Button fx:id="createPetButtonMessage" layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#createPet" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Create">
+            <Button fx:id="createPetButtonMessage" focusTraversable="false" layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#createPet" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Create">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
