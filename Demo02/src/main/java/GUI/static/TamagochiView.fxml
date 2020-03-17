@@ -142,7 +142,7 @@
             <Label fx:id="messageGameOver" layoutX="14.0" layoutY="52.0" maxHeight="162.0" maxWidth="312.0" prefHeight="162.0" prefWidth="312.0" styleClass="message" stylesheets="@style.css" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="starGameWindow" layoutX="160.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="347.0" styleClass="anchor_pane_game_over" stylesheets="@style.css" visible="false">
+      <AnchorPane fx:id="starGameWindow" layoutX="160.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="347.0" styleClass="anchor_pane_game_over" stylesheets="@style.css">
          <children>
             <Group layoutX="-14.0" layoutY="14.0">
                <children>
