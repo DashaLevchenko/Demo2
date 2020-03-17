@@ -30,7 +30,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toFeed() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException {
+    public void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
         changeHealthPoint(2, true);//add methods increase health
         changeHappiness(1, true);
         changeSatiety(10, true);
@@ -46,7 +46,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toScold() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException {
+    public void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
         changeHealthPoint(2, false);
         changeHappiness(2, false);
         changeSatiety(1, false);
@@ -56,7 +56,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toStroke() throws PetGrewUpException, PetDiedException, PetNeedsSomethingException {
+    public void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
         changeHealthPoint(2, false);
         changeHappiness(2, true);
         changeSatiety(1, false);
@@ -65,13 +65,11 @@ public abstract class Animal implements Actions {
     }
 
     /**
-     *
      * @throws PetDiedException
      * @throws PetGrewUpException
-     * @throws PetNeedsSomethingException
      */
     @Override
-    public void toWash() throws PetDiedException, PetGrewUpException, PetNeedsSomethingException {
+    public void toWash() throws PetDiedException, PetGrewUpException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
         changeHealthPoint(2, true);
         changeSatiety(1, false);
         changeAge();
@@ -85,7 +83,7 @@ public abstract class Animal implements Actions {
 
     }
 
-    public void check_stage() throws PetDiedException, PetGrewUpException, PetNeedsSomethingException {
+    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPalyException, PocheshiPuzikoException, OopsYourShoesIsWetException {
         if (healthPoint <= MIN_HEALTH_POINT) {
             throw new PetDiedException("Your pet is dead. Game over.");
         }
@@ -93,23 +91,23 @@ public abstract class Animal implements Actions {
             throw new PetGrewUpException("Congratulations! Your pet has been grew up! \n Game over.");
         }
 
-        if (getSatiety() < 10) {
-            throw new PetNeedsSomethingException("I'm hungry!");
+        if (satiety < 10) {
+            throw new PetIsHungryException("I'm hungry!");
         }
-        if (getisItSick() && getHealthPoint() < 20) {
-            throw new PetNeedsSomethingException("Something wrong, I'm feeling bad...");
+        if (isItSick && healthPoint < 20) {
+            throw new PetIsIllException("Something wrong, I'm feeling bad...");
         }
-        if (getPurity() <= 6) {
-            throw new PetNeedsSomethingException("I'm dirty. You know what to do!");
+        if (purity <= 6) {
+            throw new PetIsDirtyException("I'm dirty. You know what to do!)");
         }
-        if (getHappiness() < 5) {
-            throw new PetNeedsSomethingException("Play with me or your shoes will suffer!");
+        if (happiness < 5) {
+            throw new PetWantsToPalyException("Play with me or your shoes will suffer!");
         }
-        if (getHappiness() < 7) {
-            throw new PetNeedsSomethingException("Purrr! Scratch my tummy!");
+        if (happiness < 7) {
+            throw new PocheshiPuzikoException("Purrr! Scratch my tummy!");
         }
-        if (getHappiness() < 4 || getSatiety() < 15) {
-            throw new PetNeedsSomethingException("Oops! Your shoes is wet...");
+        if (happiness < 4 || satiety < 15) {
+            throw new OopsYourShoesIsWetException("Oops! Your shoes is wet...");
         }
     }
 

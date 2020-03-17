@@ -113,10 +113,20 @@ public class Controller {
     void toScoldButton() {
         try {
             cat.toScold();
-        } catch (PetNeedsSomethingException e) {
-            printStateExceptionText(e.getMessage());
         } catch (PetGrewUpException | PetDiedException e) {
             gameOverWindow.setVisible(true);
+        } catch (PetIsDirtyException e) {
+            printStateExceptionText(e.getMessage());
+        } catch (PocheshiPuzikoException e) {
+            printStateExceptionText(e.getMessage());
+        } catch (PetIsIllException e) {
+            printStateExceptionText(e.getMessage());
+        } catch (OopsYourShoesIsWetException e) {
+            printStateExceptionText(e.getMessage());
+        } catch (PetWantsToPalyException e) {
+            printStateExceptionText(e.getMessage());
+        } catch (PetIsHungryException e) {
+            printStateExceptionText(e.getMessage());
         }
     }
 
@@ -127,10 +137,20 @@ public class Controller {
         waitBeforeAction(action -> {
             try {
                 cat.toWash();
-            } catch (PetNeedsSomethingException e) {
-                printStateExceptionText(e.getMessage());
             } catch (PetDiedException | PetGrewUpException e) {
                 printGameOverException(e.getMessage());
+            } catch (PetIsDirtyException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PocheshiPuzikoException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetIsIllException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (OopsYourShoesIsWetException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetWantsToPalyException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetIsHungryException e) {
+                printStateExceptionText(e.getMessage());
             }
         }, 1500);
 
@@ -183,10 +203,21 @@ public class Controller {
         waitBeforeAction(action -> {
             try {
                 cat.toStroke();
-            } catch (PetNeedsSomethingException e) {
-                printStateExceptionText(e.getMessage());
+
             } catch (PetDiedException | PetGrewUpException e) {
                 printGameOverException(e.getMessage());
+            } catch (PetIsDirtyException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PocheshiPuzikoException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetIsIllException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (OopsYourShoesIsWetException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetWantsToPalyException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetIsHungryException e) {
+                printStateExceptionText(e.getMessage());
             }
         }, 1500);
 
@@ -201,10 +232,20 @@ public class Controller {
         waitBeforeAction(action -> {
             try {
                 cat.toFeed();
-            } catch (PetNeedsSomethingException e) {
-                printStateExceptionText(e.getMessage());
             } catch (PetDiedException | PetGrewUpException e) {
                 printGameOverException(e.getMessage());
+            } catch (PetIsDirtyException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PocheshiPuzikoException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetIsIllException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (OopsYourShoesIsWetException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetWantsToPalyException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetIsHungryException e) {
+                printStateExceptionText(e.getMessage());
             }
         }, 1500);
 
