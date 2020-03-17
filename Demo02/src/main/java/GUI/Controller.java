@@ -6,11 +6,14 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -22,7 +25,16 @@ public class Controller {
     private ProgressBar satiety;
 
     @FXML
+    private Button createPetButtonMessage;
+
+    @FXML
+    private Label messageGameOver;
+
+    @FXML
     private Label healthNumber;
+
+    @FXML
+    private Label nameErrorLabel;
 
     @FXML
     private ProgressBar purity;
@@ -34,16 +46,37 @@ public class Controller {
     private ProgressBar health;
 
     @FXML
+    private TextField nameTextInput;
+
+    @FXML
     private Button hideButton;
+
+    @FXML
+    private AnchorPane starGameWindow;
 
     @FXML
     private Label purityNumbers;
 
     @FXML
+    private Label catNameLabel;
+
+    @FXML
+    private Label thinkCloudText;
+
+    @FXML
     private Button cancelButton;
 
     @FXML
+    private AnchorPane gameOverWindow;
+
+    @FXML
+    private AnchorPane anchorPaneWithInterface;
+
+    @FXML
     private ProgressBar happiness;
+
+    @FXML
+    private Group thinkCloud;
 
     @FXML
     private Label happinessNumbers;
@@ -57,71 +90,126 @@ public class Controller {
     @FXML
     private ImageView catImage;
 
-    private static final Duration TIME_TO_WAIT = Duration.millis(1000);
-    private Cat cat = new Cat();
+    private Cat cat;
 
+    //region Description
     private Image defaultImage = new Image("GUI/static/img/start.png");
 
-    private Image eatImage = new Image("GUI/static/img/eat.png");
-//    private Image playImage = new Image("GUI/static/img/play.png");
-//    private Image washImage = new Image("GUI/static/img/start.png");
-//    private Image defaultImage = new Image("GUI/static/img/start.png");
+    private Image eatingImage = new Image("GUI/static/img/action/eating.png");
+    private Image playing = new Image("GUI/static/img/action/playing.png");
+    private Image scratchingTummy = new Image("GUI/static/img/action/scratchingTummy.png");
+    private Image treatment = new Image("GUI/static/img/action/treatment.png");
+    private Image washing = new Image("GUI/static/img/action/washing.png");
+    //endregion
+
+    private Image dirty = new Image("GUI/static/img/state/dirty.png");
+    private Image needMedicine = new Image("GUI/static/img/state/needMedicine.png");
+    private Image wantToEat = new Image("GUI/static/img/state/wantToEat.png");
+    private Image wantToPlay = new Image("GUI/static/img/state/wantToPlay.png");
+    private Image wantToScratchTummy = new Image("GUI/static/img/state/wantToScratchTummy.png");
+
 
     @FXML
-    void toScoldButton() throws PetDiedException, PetNeedsSomethingException, PetGrewUpException {
-        cat.toScold();
-        changeImageAndProgresses(eatImage);
+    void toScoldButton() {
+        try {
+            cat.toScold();
+        } catch (PetNeedsSomethingException e) {
+            printStateExceptionText(e.getMessage());
+        } catch (PetGrewUpException | PetDiedException e) {
+            gameOverWindow.setVisible(true);
+        }
     }
 
     @FXML
-    void toWashButton()  {
-        try {
-            cat.toWash();
-        } catch (PetDiedException | PetGrewUpException | PetNeedsSomethingException e) {
-            System.out.println(e.getMessage());
-        }
-        changeImageAndProgresses(eatImage);
+    void toWashButton() {
+        catImage.setImage(washing);
+
+        waitBeforeAction(action -> {
+            try {
+                cat.toWash();
+            } catch (PetNeedsSomethingException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetDiedException | PetGrewUpException e) {
+                printGameOverException(e.getMessage());
+            }
+        }, 1500);
+
+        setDefaultImage();
+        changeProgresses();
     }
 
     @FXML
-    void toPlayButton(){
-        try {
-            cat.toPlay();
-        }  catch (PetDiedException | PetGrewUpException e) {
-            System.out.println(e.getMessage());
-        }
-        changeImageAndProgresses(eatImage);
+    void toPlayButton() {
+        catImage.setImage(playing);
+
+        waitBeforeAction(action -> {
+            try {
+                cat.toPlay();
+            } catch (PetDiedException | PetGrewUpException e) {
+                printGameOverException(e.getMessage());
+            }
+        }, 1500);
+
+        setDefaultImage();
+        changeProgresses();
+    }
+
+    private void printGameOverException(String message) {
+        gameOverWindow.setVisible(true);
+        anchorPaneWithInterface.setDisable(true);
+        messageGameOver.setText(message);
     }
 
     @FXML
-    void toHealButton()  {
-        try {
-            cat.toHeal();
-        } catch (PetDiedException | PetGrewUpException  e) {
-            System.out.println(e.getMessage());
-        }
-        changeImageAndProgresses(eatImage);
+    void toHealButton() {
+        catImage.setImage(treatment);
+
+        waitBeforeAction(action -> {
+            try {
+                cat.toHeal();
+            } catch (PetDiedException | PetGrewUpException e) {
+                printGameOverException(e.getMessage());
+            }
+        }, 1500);
+
+        setDefaultImage();
+        changeProgresses();
     }
 
     @FXML
     void toStrokeButton() {
-        try {
-            cat.toStroke();
-        }  catch (PetDiedException | PetGrewUpException | PetNeedsSomethingException e) {
-            System.out.println(e.getMessage());
-        }
-        changeImageAndProgresses(eatImage);
+        catImage.setImage(scratchingTummy);
+
+        waitBeforeAction(action -> {
+            try {
+                cat.toStroke();
+            } catch (PetNeedsSomethingException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetDiedException | PetGrewUpException e) {
+                printGameOverException(e.getMessage());
+            }
+        }, 1500);
+
+        setDefaultImage();
+        changeProgresses();
     }
 
     @FXML
     void toFeedButton() {
-        try {
-            cat.toFeed();
-        } catch (PetGrewUpException | PetDiedException | PetNeedsSomethingException e) {
-            System.out.println(e.getMessage());
-        }
+        catImage.setImage(eatingImage);
 
-        changeImageAndProgresses(eatImage);
+        waitBeforeAction(action -> {
+            try {
+                cat.toFeed();
+            } catch (PetNeedsSomethingException e) {
+                printStateExceptionText(e.getMessage());
+            } catch (PetDiedException | PetGrewUpException e) {
+                printGameOverException(e.getMessage());
+            }
+        }, 1500);
+
+        setDefaultImage();
+        changeProgresses();
     }
 
 
@@ -137,18 +225,63 @@ public class Controller {
         stage.setIconified(true);
     }
 
-    private void changeImageAndProgresses(Image image) {
-        changeImage(image);
-        changeProgresses();
+    @FXML
+    void createPet() {
+        String inputName = nameTextInput.getText();
+        if (inputName.isEmpty()) {
+            nameErrorLabel.setVisible(true);
+        } else {
+            cat = new Cat(inputName);
+            nameErrorLabel.setVisible(false);
+            starGameWindow.setVisible(false);
+            catNameLabel.setText(inputName);
+            anchorPaneWithInterface.setDisable(false);
+            printThinkCloudMessage("Hello, my name is " + inputName);
+        }
     }
 
-    private void changeImage(Image image) {
-        catImage.setImage(image);
-        waitBeforeAction(e -> catImage.setImage(defaultImage));
+
+    @FXML
+    void gameOverButtonPressed() {
+        cancelButtonPressed();
     }
 
-    private void waitBeforeAction(EventHandler<ActionEvent> actionEvent) {
-        Timeline timeline = new Timeline(new KeyFrame(TIME_TO_WAIT, actionEvent));
+    private void printStateExceptionText(String message) {
+        if (message.contains("dirty")) {
+            catImage.setImage(dirty);
+        }
+
+        if (message.contains("feeling bad")) {
+            catImage.setImage(needMedicine);
+        }
+
+        if (message.contains("tummy")) {
+            catImage.setImage(wantToScratchTummy);
+        }
+
+        if (message.contains("play")) {
+            catImage.setImage(wantToPlay);
+        }
+
+        if (message.contains("hungry")) {
+            catImage.setImage(wantToEat);
+        }
+
+        printThinkCloudMessage(message);
+    }
+
+    private void printThinkCloudMessage(String message) {
+        thinkCloud.setVisible(true);
+        thinkCloudText.setText(message);
+        waitBeforeAction(actionEvent -> thinkCloud.setVisible(false), 1500);
+    }
+
+    private void setDefaultImage() {
+        waitBeforeAction(actionEvent -> catImage.setImage(defaultImage), 2700);
+    }
+
+    private void waitBeforeAction(EventHandler<ActionEvent> actionEvent, int millis) {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(millis), actionEvent));
         timeline.play();
     }
 
@@ -170,6 +303,6 @@ public class Controller {
                     changeProgressBarValue(cat.getSatiety(), Cat.MAX_SATIETY, satiety, satietyNumbers);
                     changeProgressBarValue(cat.getAge(), Cat.MAX_AGE, age, ageNumbers);
                     changeProgressBarValue(cat.getPurity(), Cat.MAX_PURITY, purity, purityNumbers);
-                });
+                }, 1500);
     }
 }

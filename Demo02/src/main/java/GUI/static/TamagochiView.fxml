@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
@@ -7,105 +10,159 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="677.0" style="-fx-background-color: #dbb8da;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="677.0" style="-fx-background-color: #dbb8da;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <AnchorPane layoutX="20.0" layoutY="50.0" prefHeight="107.0" prefWidth="643.0">
+      <AnchorPane fx:id="anchorPaneWithInterface" disable="true" layoutX="5.0" layoutY="2.0" prefHeight="587.0" prefWidth="677.0" styleClass="anchor_pane_with_interface" stylesheets="@style.css">
          <children>
-            <Group>
+            <Button fx:id="cancelButton" layoutX="638.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+            <Button layoutY="331.0" mnemonicParsing="false" onAction="#toScoldButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Scold">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button layoutX="572.0" layoutY="428.0" mnemonicParsing="false" onAction="#toHealButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Heal">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#toFeedButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Feed">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <AnchorPane layoutX="15.0" layoutY="48.0" prefHeight="107.0" prefWidth="643.0">
                <children>
-                  <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Health " />
-                  <ProgressBar fx:id="health" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                  <Group>
+                     <children>
+                        <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Health " />
+                        <ProgressBar fx:id="health" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                     </children>
+                  </Group>
+                  <Group layoutY="43.0">
+                     <children>
+                        <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Hapipiness" />
+                        <ProgressBar fx:id="happiness" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                     </children>
+                  </Group>
+                  <Group layoutY="87.0">
+                     <children>
+                        <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Satiety" />
+                        <ProgressBar fx:id="satiety" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                     </children>
+                  </Group>
+                  <Group layoutX="443.0">
+                     <children>
+                        <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Age" />
+                        <ProgressBar fx:id="age" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
+                     </children>
+                  </Group>
+                  <Group layoutX="443.0" layoutY="43.0">
+                     <children>
+                        <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Purity" />
+                        <ProgressBar fx:id="purity" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
+                     </children>
+                  </Group>
+                  <Label fx:id="healthNumber" layoutX="206.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+                  <Label fx:id="ageNumbers" layoutX="396.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/5" AnchorPane.leftAnchor="396.0" />
+                  <Label fx:id="happinessNumbers" layoutX="210.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="15/10" textAlignment="RIGHT" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+                  <Label fx:id="satietyNumbers" layoutX="206.0" layoutY="98.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+                  <Label fx:id="purityNumbers" layoutX="396.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/10" AnchorPane.leftAnchor="402.0" />
                </children>
-            </Group>
-            <Group layoutY="43.0">
-               <children>
-                  <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Hapipiness" />
-                  <ProgressBar fx:id="happiness" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
-               </children>
-            </Group>
-            <Group layoutY="87.0">
-               <children>
-                  <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Satiety" />
-                  <ProgressBar fx:id="satiety" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
-               </children>
-            </Group>
-            <Group layoutX="443.0">
-               <children>
-                  <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Age" />
-                  <ProgressBar fx:id="age" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
-               </children>
-            </Group>
-            <Group layoutX="443.0" layoutY="43.0">
-               <children>
-                  <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Purity" />
-                  <ProgressBar fx:id="purity" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
-               </children>
-            </Group>
-            <Label fx:id="healthNumber" layoutX="206.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
-            <Label fx:id="ageNumbers" layoutX="396.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/5" AnchorPane.leftAnchor="396.0" />
-            <Label fx:id="happinessNumbers" layoutX="210.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="15/10" textAlignment="RIGHT" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
-            <Label fx:id="satietyNumbers" layoutX="206.0" layoutY="98.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
-            <Label fx:id="purityNumbers" layoutX="396.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/10" AnchorPane.leftAnchor="402.0" />
-         </children>
-      </AnchorPane>
-      <Button layoutX="5.0" layoutY="333.0" mnemonicParsing="false" onAction="#toScoldButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Scold">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button layoutX="5.0" layoutY="430.0" mnemonicParsing="false" onAction="#toWashButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Wash">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button layoutX="577.0" layoutY="235.0" mnemonicParsing="false" onAction="#toPlayButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Play">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button layoutX="577.0" layoutY="430.0" mnemonicParsing="false" onAction="#toHealButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Heal">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button layoutX="577.0" layoutY="333.0" mnemonicParsing="false" onAction="#toStrokeButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Stroke">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button layoutX="5.0" layoutY="235.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#toFeedButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Feed">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <AnchorPane layoutX="160.0" layoutY="193.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="186.0" AnchorPane.topAnchor="193.0">
-         <children>
-            <ImageView fx:id="catImage" fitHeight="323.0" fitWidth="331.0">
+            </AnchorPane>
+            <Button layoutY="428.0" mnemonicParsing="false" onAction="#toWashButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Wash">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <ImageView fx:id="catImage" fitHeight="373.0" fitWidth="453.0" layoutX="99.0" layoutY="214.0">
                <image>
                   <Image url="@img/start.png" />
                </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
             </ImageView>
+            <Button layoutX="572.0" layoutY="331.0" mnemonicParsing="false" onAction="#toStrokeButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Stroke">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="hideButton" layoutX="605.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+            <Button layoutX="572.0" layoutY="233.0" mnemonicParsing="false" onAction="#toPlayButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Play">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Label fx:id="catNameLabel" layoutX="175.0" layoutY="179.0" styleClass="cat_name_label" stylesheets="@style.css" text="Name" />
+            <Group fx:id="thinkCloud" layoutX="-50.0" visible="false">
+               <children>
+                  <Circle fill="WHITE" layoutX="470.0" layoutY="280.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
+                  <Circle fill="WHITE" layoutX="496.0" layoutY="258.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
+                  <Label fx:id="thinkCloudText" layoutX="482.0" layoutY="135.0" maxWidth="170.0" styleClass="dialog_text_area" stylesheets="@style.css" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </Group>
+            <Label layoutX="10.0" layoutY="179.0" styleClass="cat_name_label" stylesheets="@style.css" text="Cat's name:" />
          </children>
       </AnchorPane>
-      <Button fx:id="cancelButton" layoutX="643.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
-      <Button fx:id="hideButton" layoutX="610.0" layoutY="2.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+      <AnchorPane fx:id="gameOverWindow" layoutX="160.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="347.0" styleClass="anchor_pane_game_over" stylesheets="@style.css" visible="false">
+         <children>
+            <Group layoutX="-14.0" layoutY="14.0">
+               <children>
+                  <Button layoutX="287.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+                  <Button layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+               </children>
+            </Group>
+            <Button layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#gameOverButtonPressed" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Ok">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Label fx:id="messageGameOver" layoutX="14.0" layoutY="52.0" maxHeight="162.0" maxWidth="312.0" prefHeight="162.0" prefWidth="312.0" styleClass="message" stylesheets="@style.css" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="starGameWindow" layoutX="160.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="347.0" styleClass="anchor_pane_game_over" stylesheets="@style.css" visible="false">
+         <children>
+            <Group layoutX="-14.0" layoutY="14.0">
+               <children>
+                  <Button layoutX="287.0" mnemonicParsing="false" onAction="#hideButtonPressed" styleClass="close_and_hide_button" stylesheets="@style.css" text="—" />
+                  <Button layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
+               </children>
+            </Group>
+            <Button fx:id="createPetButtonMessage" layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#createPet" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Create">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="52.0" maxHeight="162.0" maxWidth="312.0" prefHeight="41.0" prefWidth="312.0" styleClass="welcomeMessage" stylesheets="@style.css" text="Welcome!" textAlignment="CENTER" wrapText="true" />
+            <Label alignment="TOP_CENTER" layoutX="18.0" layoutY="94.0" maxHeight="162.0" maxWidth="312.0" prefHeight="41.0" prefWidth="312.0" styleClass="welcomeMessage" stylesheets="@style.css" text="Give name your cat:" textAlignment="CENTER" wrapText="true" />
+            <TextField fx:id="nameTextInput" layoutX="48.0" layoutY="150.0" prefHeight="25.0" prefWidth="270.0" promptText="Bulbasaur" styleClass="name_input_text" stylesheets="@style.css" />
+            <Label fx:id="nameErrorLabel" layoutX="48.0" layoutY="136.0" styleClass="name_error_label" stylesheets="@style.css" text="Cat must have name" visible="false" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

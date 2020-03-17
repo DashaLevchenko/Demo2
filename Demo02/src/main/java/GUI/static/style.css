@@ -9,6 +9,19 @@
 -fx-border-radius: 100px;
 }
 
+.anchor_pane_with_interface{
+-fx-background-color: #dbb8da;
+
+}
+
+.anchor_pane_game_over{
+-fx-background-color: #dbb8da;
+-fx-border-color: #33ff69;
+-fx-border-width: 5px;
+-fx-border-radius: 20px;
+-fx-background-radius: 5px;
+}
+
 
 .button_actions:hover{
 -fx-background-color: #e3fa5f;
@@ -69,8 +82,55 @@
 -fx-border-width: 5px;
 -fx-border-radius: 100px;
 }
-.close_and_hide_button:pressed{
+
+.close_and_hide_button :pressed{
 -fx-background-color: #084003;
 -fx-border-color: #e3fa5f;
 -fx-text-fill: #e3fa5f;
 }
+
+.dialog_text_area{
+-fx-background-color: #ffffff;
+-fx-label-padding: 15px;
+-fx-background-radius: 100px;
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 18px;
+-fx-text-fill: #0e2b02;
+-fx-border-color: #000000;
+-fx-border-width: 2px;
+-fx-border-radius: 100px;
+}
+
+.message{
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 18px;
+-fx-text-fill: #0e2b02;
+}
+
+.welcomeMessage{
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 30px;
+-fx-text-fill: #0e2b02;	
+}
+
+.name_input_text{
+-fx-background-color: #d199b2;
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 30px;
+-fx-text-fill: #302329;	
+}
+
+.name_error_label{
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 10px;
+-fx-text-fill: red;	
+}	
+
+.cat_name_label{
+-fx-background-color: #d199b2;
+-fx-font-family:"Comic Sans MS";
+-fx-font-size: 30px;
+-fx-text-fill: #302329;		
+}
+
+
