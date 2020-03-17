@@ -10,6 +10,7 @@ public abstract class Animal implements Actions {
     public static final int MIN_HEALTH_POINT = 0;
 
 
+    private String name;
     private int healthPoint;
     private int happiness;
     private int satiety;
@@ -18,13 +19,14 @@ public abstract class Animal implements Actions {
     private boolean isItSick;
 
 
-    public Animal() {
+    public Animal(String name) {
         healthPoint = 25;
         happiness = 5;
         satiety = 25;
         age = 0;
         purity = 0;
         isItSick = false;
+        this.name = name;
     }
 
     @Override
@@ -98,7 +100,7 @@ public abstract class Animal implements Actions {
             throw new PetNeedsSomethingException("Something wrong, I'm feeling bad...");
         }
         if (getPurity() <= 6) {
-            throw new PetNeedsSomethingException("I'm dirty. You know what to do!)");
+            throw new PetNeedsSomethingException("I'm dirty. You know what to do!");
         }
         if (getHappiness() < 5) {
             throw new PetNeedsSomethingException("Play with me or your shoes will suffer!");
