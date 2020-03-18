@@ -1,7 +1,7 @@
-package demo;
+package demo.exceptions;
 
 public class PetIsDirtyException extends Exception {
-    PetIsDirtyException(String message) {
+    public PetIsDirtyException(String message) {
         super(message);
     }
 }

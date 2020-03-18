@@ -1,6 +1,8 @@
 package demo;
 
 
+import demo.exceptions.*;
+
 public abstract class Animal implements Actions {
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
@@ -30,13 +32,13 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, true);//add methods increase health
         changeHappiness(1, true);
         changeSatiety(10, true);
         changeAge();
         changePurity(2, false);
-        check_stage(); //have to be static...
+        checkStage(); //have to be static...
 
     }
 
@@ -46,35 +48,31 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, false);
         changeHappiness(2, false);
         changeSatiety(1, false);
 
         changeAge();
-        check_stage();
+        checkStage();
     }
 
     @Override
-    public void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, false);
         changeHappiness(2, true);
         changeSatiety(1, false);
         changeAge();
-        check_stage();
+        checkStage();
     }
 
-    /**
-     * @throws PetDiedException
-     * @throws PetGrewUpException
-     */
     @Override
-    public void toWash() throws PetDiedException, PetGrewUpException, PetIsDirtyException, PocheshiPuzikoException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toWash() throws PetDiedException, PetGrewUpException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, true);
         changeSatiety(1, false);
         changeAge();
         changePurity(3, true);
-        check_stage();
+        checkStage();
     }
 
 
@@ -83,7 +81,7 @@ public abstract class Animal implements Actions {
 
     }
 
-    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPalyException, PocheshiPuzikoException, OopsYourShoesIsWetException {
+    public void checkStage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPlayException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
         if (healthPoint <= MIN_HEALTH_POINT) {
             throw new PetDiedException("Your pet is dead. Game over.");
         }
@@ -100,15 +98,16 @@ public abstract class Animal implements Actions {
         if (purity <= 6) {
             throw new PetIsDirtyException("I'm dirty. You know what to do!)");
         }
-        if (happiness < 5) {
-            throw new PetWantsToPalyException("Play with me or your shoes will suffer!");
-        }
-        if (happiness < 7) {
-            throw new PocheshiPuzikoException("Purrr! Scratch my tummy!");
-        }
-        if (happiness < 4 || satiety < 15) {
+        if (happiness < 4 && satiety < 15) {
             throw new OopsYourShoesIsWetException("Oops! Your shoes is wet...");
         }
+        if (happiness < 5) {
+            throw new PetWantsToPlayException("Play with me or your shoes will suffer!");
+        }
+        if (happiness < 7) {
+            throw new PetWantsToScratchTummyException("Purrr! Scratch my tummy!");
+        }
+
     }
 
     /**
@@ -126,6 +125,9 @@ public abstract class Animal implements Actions {
             newValue = healthPoint + digit;
         } else {
             newValue = healthPoint - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
 
         healthPoint = Math.min(newValue, MAX_HEALTH_POINT);
@@ -146,6 +148,9 @@ public abstract class Animal implements Actions {
             newValue = happiness + digit;
         } else {
             newValue = happiness - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
 
         happiness = Math.min(newValue, MAX_HAPPINESS);
@@ -166,6 +171,9 @@ public abstract class Animal implements Actions {
             newValue = satiety + digit;
         } else {
             newValue = satiety - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
 
         satiety = Math.min(newValue, MAX_SATIETY);
@@ -186,6 +194,9 @@ public abstract class Animal implements Actions {
             newValue = purity + digit;
         } else {
             newValue = purity - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
         purity = Math.min(newValue, MAX_PURITY);
     }
@@ -216,9 +227,12 @@ public abstract class Animal implements Actions {
         return purity;
     }
 
-    public boolean getisItSick() {
+    public boolean getIsItSick() {
         return isItSick;
     }
 
 
+    public String getName() {
+        return name;
+    }
 }

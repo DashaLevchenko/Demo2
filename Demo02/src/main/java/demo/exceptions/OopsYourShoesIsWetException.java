@@ -1,7 +1,7 @@
-package demo;
+package demo.exceptions;
 
 public class OopsYourShoesIsWetException extends Exception {
-    OopsYourShoesIsWetException(String message) {
+    public OopsYourShoesIsWetException(String message) {
         super(message);
     }
 }
