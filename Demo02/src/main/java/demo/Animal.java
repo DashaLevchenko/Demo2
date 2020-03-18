@@ -76,7 +76,7 @@ public abstract class Animal implements Actions {
         changeHealthPoint(2, true);
         changeSatiety(1, false);
         changeAge();
-        changePurity(3, true);
+        changePurity(5, true);
         checkStage();
     }
 
