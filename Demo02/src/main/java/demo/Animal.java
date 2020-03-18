@@ -125,6 +125,9 @@ public abstract class Animal implements Actions {
             newValue = healthPoint + digit;
         } else {
             newValue = healthPoint - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
 
         healthPoint = Math.min(newValue, MAX_HEALTH_POINT);
@@ -145,6 +148,9 @@ public abstract class Animal implements Actions {
             newValue = happiness + digit;
         } else {
             newValue = happiness - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
 
         happiness = Math.min(newValue, MAX_HAPPINESS);
@@ -165,6 +171,9 @@ public abstract class Animal implements Actions {
             newValue = satiety + digit;
         } else {
             newValue = satiety - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
 
         satiety = Math.min(newValue, MAX_SATIETY);
@@ -185,6 +194,9 @@ public abstract class Animal implements Actions {
             newValue = purity + digit;
         } else {
             newValue = purity - digit;
+            if (newValue < 0) {
+                newValue = 0;
+            }
         }
         purity = Math.min(newValue, MAX_PURITY);
     }
@@ -220,4 +232,7 @@ public abstract class Animal implements Actions {
     }
 
 
+    public String getName() {
+        return name;
+    }
 }
