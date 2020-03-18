@@ -162,6 +162,9 @@ public class Controller {
                 cat.toPlay();
             } catch (PetDiedException | PetGrewUpException e) {
                 printGameOverException(e.getMessage());
+            } catch (PetIsDirtyException | PetWantsToScratchTummyException | PetIsIllException |
+                    OopsYourShoesIsWetException | PetWantsToPlayException | PetIsHungryException e) {
+                printStateExceptionText(e);
             }
         }, FAST_WAITING_MILLISECOND);
 
@@ -178,6 +181,9 @@ public class Controller {
                 cat.toHeal();
             } catch (PetDiedException | PetGrewUpException e) {
                 printGameOverException(e.getMessage());
+            } catch (PetIsDirtyException | PetWantsToScratchTummyException | PetIsIllException |
+                    OopsYourShoesIsWetException | PetWantsToPlayException | PetIsHungryException e) {
+                printStateExceptionText(e);
             }
         }, FAST_WAITING_MILLISECOND);
 
@@ -252,7 +258,7 @@ public class Controller {
             printThinkCloudMessage("Hello, my name is " + cat.getName());
         }
     }
-    
+
     @FXML
     void gameOverButtonPressed() {
         cancelButtonPressed();
