@@ -38,7 +38,7 @@ public abstract class Animal implements Actions {
         changeSatiety(10, true);
         changeAge();
         changePurity(2, false);
-        check_stage(); //have to be static...
+        checkStage(); //have to be static...
 
     }
 
@@ -54,7 +54,7 @@ public abstract class Animal implements Actions {
         changeSatiety(1, false);
 
         changeAge();
-        check_stage();
+        checkStage();
     }
 
     @Override
@@ -63,7 +63,7 @@ public abstract class Animal implements Actions {
         changeHappiness(2, true);
         changeSatiety(1, false);
         changeAge();
-        check_stage();
+        checkStage();
     }
 
     @Override
@@ -72,7 +72,7 @@ public abstract class Animal implements Actions {
         changeSatiety(1, false);
         changeAge();
         changePurity(3, true);
-        check_stage();
+        checkStage();
     }
 
 
@@ -81,7 +81,7 @@ public abstract class Animal implements Actions {
 
     }
 
-    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPlayException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
+    public void checkStage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPlayException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
         if (healthPoint <= MIN_HEALTH_POINT) {
             throw new PetDiedException("Your pet is dead. Game over.");
         }
