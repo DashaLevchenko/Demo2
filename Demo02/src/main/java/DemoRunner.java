@@ -1,4 +1,4 @@
-import GUI.Run;
+import guiTamagochi.Run;
 
 public class DemoRunner {
     public static void end_game() {

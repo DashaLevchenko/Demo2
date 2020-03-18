@@ -1,7 +1,7 @@
-package demo;
+package demo.exceptions;
 
 public class PetDiedException extends Exception {
-    PetDiedException(String message) {
+    public PetDiedException(String message) {
         super(message);
     }
 }

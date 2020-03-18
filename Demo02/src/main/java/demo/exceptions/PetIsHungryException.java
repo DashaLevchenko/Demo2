@@ -1,7 +1,7 @@
-package demo;
+package demo.exceptions;
 
 public class PetIsHungryException extends Exception {
-    PetIsHungryException(String message) {
+    public PetIsHungryException(String message) {
         super(message);
     }
 

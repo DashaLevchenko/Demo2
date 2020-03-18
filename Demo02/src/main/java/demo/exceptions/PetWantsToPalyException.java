@@ -1,7 +1,7 @@
-package demo;
+package demo.exceptions;
 
 public class PetWantsToPalyException extends Exception {
-    PetWantsToPalyException(String message) {
+    public PetWantsToPalyException(String message) {
         super(message);
     }
 }
