@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="677.0" style="-fx-background-color: #dbb8da;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <AnchorPane fx:id="anchorPaneWithInterface" disable="true" layoutX="5.0" layoutY="2.0" prefHeight="587.0" prefWidth="677.0" styleClass="anchor_pane_with_interface" stylesheets="@style.css">
+      <AnchorPane fx:id="anchorPaneWithInterface" disable="true" layoutX="5.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="587.0" prefWidth="677.0" styleClass="anchor_pane_with_interface" stylesheets="@style.css">
          <children>
             <Button fx:id="cancelButton" focusTraversable="false" layoutX="638.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
             <Button layoutY="331.0" mnemonicParsing="false" onAction="#toScoldButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Scold">
@@ -150,7 +150,7 @@
                   <Button focusTraversable="false" layoutX="319.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="25.0" prefWidth="28.0" styleClass="close_and_hide_button" stylesheets="@style.css" text="X" />
                </children>
             </Group>
-            <Button fx:id="createPetButtonMessage" focusTraversable="false" layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#createPet" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Create">
+            <Button focusTraversable="false" layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#createPet" prefHeight="67.0" prefWidth="122.0" styleClass="button_actions" stylesheets="@style.css" text="Create">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
