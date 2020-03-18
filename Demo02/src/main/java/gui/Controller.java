@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import demo.*;
 import demo.exceptions.*;
@@ -94,25 +94,25 @@ public class Controller {
     private Cat cat;
 
     //region Description
-    private Image defaultImage = new Image("GUI/static/img/start.png");
+    private Image defaultImage = new Image("gui/static/img/start.png");
 
-    private Image eatingImage = new Image("GUI/static/img/action/eating.png");
-    private Image playing = new Image("GUI/static/img/action/playing.png");
-    private Image scratchingTummy = new Image("GUI/static/img/action/scratchingTummy.png");
-    private Image treatment = new Image("GUI/static/img/action/treatment.png");
-    private Image washing = new Image("GUI/static/img/action/washing.png");
-    private Image scolding = new Image("GUI/static/img/action/scold.png");
+    private Image eatingImage = new Image("gui/static/img/action/eating.png");
+    private Image playing = new Image("gui/static/img/action/playing.png");
+    private Image scratchingTummy = new Image("gui/static/img/action/scratchingTummy.png");
+    private Image treatment = new Image("gui/static/img/action/treatment.png");
+    private Image washing = new Image("gui/static/img/action/washing.png");
+    private Image scolding = new Image("gui/static/img/action/scold.png");
     //endregion
 
     private HashMap<String, Image> exceptionsImage = new HashMap<>();
 
     {
-        exceptionsImage.put(PetIsDirtyException.class.getSimpleName(), new Image("GUI/static/img/state/dirty.png"));
-        exceptionsImage.put(PetIsIllException.class.getSimpleName(), new Image("GUI/static/img/state/needMedicine.png"));
-        exceptionsImage.put(PetIsHungryException.class.getSimpleName(), new Image("GUI/static/img/state/wantToEat.png"));
-        exceptionsImage.put(PetWantsToPlayException.class.getSimpleName(), new Image("GUI/static/img/state/wantToPlay.png"));
-        exceptionsImage.put(PetWantsToScratchTummyException.class.getSimpleName(), new Image("GUI/static/img/state/wantToScratchTummy.png"));
-        exceptionsImage.put(OopsYourShoesIsWetException.class.getSimpleName(), new Image("GUI/static/img/state/slippers.png"));
+        exceptionsImage.put(PetIsDirtyException.class.getSimpleName(), new Image("gui/static/img/state/dirty.png"));
+        exceptionsImage.put(PetIsIllException.class.getSimpleName(), new Image("gui/static/img/state/needMedicine.png"));
+        exceptionsImage.put(PetIsHungryException.class.getSimpleName(), new Image("gui/static/img/state/wantToEat.png"));
+        exceptionsImage.put(PetWantsToPlayException.class.getSimpleName(), new Image("gui/static/img/state/wantToPlay.png"));
+        exceptionsImage.put(PetWantsToScratchTummyException.class.getSimpleName(), new Image("gui/static/img/state/wantToScratchTummy.png"));
+        exceptionsImage.put(OopsYourShoesIsWetException.class.getSimpleName(), new Image("gui/static/img/state/slippers.png"));
     }
 
     @FXML

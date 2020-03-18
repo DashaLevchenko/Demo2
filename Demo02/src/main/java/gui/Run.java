@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class Run extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void launchApp(String[] args) {
         launch(args);
     }
 }
