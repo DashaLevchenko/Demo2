@@ -43,8 +43,13 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toPlay() throws PetGrewUpException, PetDiedException {
-//some code
+    public void toPlay() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException, PetWantsToScratchTummyException {
+        changeHealthPoint(2, false);
+        changeHappiness(4, true);
+        changeSatiety(1, false);
+        changeAge();
+        changePurity(2, false);
+        checkStage();
     }
 
     @Override
@@ -77,8 +82,13 @@ public abstract class Animal implements Actions {
 
 
     @Override
-    public void toHeal() throws PetGrewUpException, PetDiedException {
-
+    public void toHeal() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException, PetWantsToScratchTummyException {
+        changeHealthPoint(18, true);
+        changeHappiness(2, false);
+        changeSatiety(2, false);
+        changeAge();
+        changePurity(2, false);
+        checkStage();
     }
 
     public void checkStage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPlayException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
