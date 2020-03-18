@@ -32,7 +32,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, true);//add methods increase health
         changeHappiness(1, true);
         changeSatiety(10, true);
@@ -48,7 +48,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, false);
         changeHappiness(2, false);
         changeSatiety(1, false);
@@ -58,7 +58,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, false);
         changeHappiness(2, true);
         changeSatiety(1, false);
@@ -67,7 +67,7 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toWash() throws PetDiedException, PetGrewUpException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPalyException {
+    public void toWash() throws PetDiedException, PetGrewUpException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
         changeHealthPoint(2, true);
         changeSatiety(1, false);
         changeAge();
@@ -81,7 +81,7 @@ public abstract class Animal implements Actions {
 
     }
 
-    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPalyException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
+    public void check_stage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPlayException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
         if (healthPoint <= MIN_HEALTH_POINT) {
             throw new PetDiedException("Your pet is dead. Game over.");
         }
@@ -102,7 +102,7 @@ public abstract class Animal implements Actions {
             throw new OopsYourShoesIsWetException("Oops! Your shoes is wet...");
         }
         if (happiness < 5) {
-            throw new PetWantsToPalyException("Play with me or your shoes will suffer!");
+            throw new PetWantsToPlayException("Play with me or your shoes will suffer!");
         }
         if (happiness < 7) {
             throw new PetWantsToScratchTummyException("Purrr! Scratch my tummy!");
