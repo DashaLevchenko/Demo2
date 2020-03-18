@@ -244,6 +244,7 @@ public class Controller {
             nameErrorLabel.setVisible(true);
         } else {
             cat = new Cat(inputName);
+            changeProgresses();
             nameErrorLabel.setVisible(false);
             starGameWindow.setVisible(false);
             catNameLabel.setText(inputName);

@@ -45,19 +45,19 @@
                   <Group>
                      <children>
                         <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Health " />
-                        <ProgressBar fx:id="health" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                        <ProgressBar fx:id="health" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
                      </children>
                   </Group>
                   <Group layoutY="43.0">
                      <children>
                         <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Hapipiness" />
-                        <ProgressBar fx:id="happiness" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                        <ProgressBar fx:id="happiness" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
                      </children>
                   </Group>
                   <Group layoutY="87.0">
                      <children>
                         <Label layoutX="4.0" layoutY="-11.0" styleClass="label_progress" stylesheets="@style.css" text="Satiety" />
-                        <ProgressBar fx:id="satiety" layoutY="12.0" prefWidth="200.0" progress="0.5" styleClass="progress_bar" stylesheets="@style.css" />
+                        <ProgressBar fx:id="satiety" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
                      </children>
                   </Group>
                   <Group layoutX="443.0">
@@ -72,11 +72,11 @@
                         <ProgressBar fx:id="purity" layoutY="12.0" prefWidth="200.0" progress="0.0" styleClass="progress_bar" stylesheets="@style.css" />
                      </children>
                   </Group>
-                  <Label fx:id="healthNumber" layoutX="206.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
-                  <Label fx:id="ageNumbers" layoutX="396.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/5" AnchorPane.leftAnchor="396.0" />
-                  <Label fx:id="happinessNumbers" layoutX="210.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="15/10" textAlignment="RIGHT" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
-                  <Label fx:id="satietyNumbers" layoutX="206.0" layoutY="98.0" styleClass="label_progress_number" stylesheets="@style.css" text="25/50" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
-                  <Label fx:id="purityNumbers" layoutX="396.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" text="0/10" AnchorPane.leftAnchor="402.0" />
+                  <Label fx:id="healthNumber" layoutX="206.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+                  <Label fx:id="ageNumbers" layoutX="396.0" layoutY="10.0" styleClass="label_progress_number" stylesheets="@style.css" AnchorPane.leftAnchor="396.0" />
+                  <Label fx:id="happinessNumbers" layoutX="210.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" textAlignment="RIGHT" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+                  <Label fx:id="satietyNumbers" layoutX="206.0" layoutY="98.0" styleClass="label_progress_number" stylesheets="@style.css" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="386.0" />
+                  <Label fx:id="purityNumbers" layoutX="396.0" layoutY="53.0" styleClass="label_progress_number" stylesheets="@style.css" AnchorPane.leftAnchor="402.0" />
                </children>
             </AnchorPane>
             <Button layoutY="428.0" mnemonicParsing="false" onAction="#toWashButton" prefHeight="95.0" prefWidth="95.0" styleClass="button_actions" stylesheets="@style.css" text="Wash">
