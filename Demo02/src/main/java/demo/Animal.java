@@ -35,59 +35,53 @@ public abstract class Animal implements Actions {
 
     @Override
     public String toFeed() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2, true);//add methods increase health
-        changeHappiness(1, true);
-        changeSatiety(10, true);
-        changeAge();
-        changePurity(2, false);
+        changeHealthPoint(2);//add methods increase health
+        changeHappiness(1);
+        changeSatiety(10);
+        changePurity(2);
         return checkNextAction();
     }
 
     @Override
     public String toPlay() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2, false);
-        changeHappiness(4, true);
-        changeSatiety(1, false);
-        changeAge();
-        changePurity(2, false);
+        changeHealthPoint(2);
+        changeHappiness(4);
+        changeSatiety(1);
+        changePurity(2);
         return checkNextAction();
     }
 
     @Override
     public String toScold() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2, false);
-        changeHappiness(2, false);
-        changeSatiety(1, false);
-        changeAge();
+        changeHealthPoint(2);
+        changeHappiness(2);
+        changeSatiety(1);
         return checkNextAction();
     }
 
     @Override
     public String toStroke() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2, false);
-        changeHappiness(2, true);
-        changeSatiety(1, false);
-        changeAge();
+        changeHealthPoint(2);
+        changeHappiness(2);
+        changeSatiety(1);
         return checkNextAction();
     }
 
     @Override
     public String toWash() throws PetDiedException, PetGrewUpException {
-        changeHealthPoint(2, true);
-        changeSatiety(1, false);
-        changeAge();
-        changePurity(5, true);
+        changeHealthPoint(2);
+        changeSatiety(1);
+        changePurity(5);
         return checkNextAction();
     }
 
 
     @Override
     public String toHeal() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(18, true);
-        changeHappiness(2, false);
-        changeSatiety(2, false);
-        changeAge();
-        changePurity(2, false);
+        changeHealthPoint(18);
+        changeHappiness(2);
+        changeSatiety(2);
+        changePurity(2);
         return checkNextAction();
     }
 
@@ -98,21 +92,10 @@ public abstract class Animal implements Actions {
      * else digit will subscribe
      *
      * @param digit Digit which need to add or subscribe
-     * @param add   True if need to add, False if need to subscribe
      */
-    private void changeHealthPoint(int digit, boolean add) {
-        int newValue;
-
-        if (add) {
-            newValue = healthPoint + digit;
-        } else {
-            newValue = healthPoint - digit;
-            if (newValue < 0) {
-                newValue = 0;
-            }
-        }
-
-        healthPoint = Math.min(newValue, MAX_HEALTH_POINT);
+    private void changeHealthPoint(int digit) {
+        changeAge();
+        healthPoint = Math.min(healthPoint + digit, MAX_HEALTH_POINT);
     }
 
     /**
@@ -123,19 +106,8 @@ public abstract class Animal implements Actions {
      * @param digit Digit which need to add or subscribe
      * @param add   True if need to add, False if need to subscribe
      */
-    private void changeHappiness(int digit, boolean add) {
-        int newValue;
-
-        if (add) {
-            newValue = happiness + digit;
-        } else {
-            newValue = happiness - digit;
-            if (newValue < 0) {
-                newValue = 0;
-            }
-        }
-
-        happiness = Math.min(newValue, MAX_HAPPINESS);
+    private void changeHappiness(int digit) {
+        happiness = Math.min(happiness + digit, MAX_HAPPINESS);
     }
 
     /**
@@ -144,21 +116,9 @@ public abstract class Animal implements Actions {
      * else digit will subscribe
      *
      * @param digit Digit which need to add or subscribe
-     * @param add   True if need to add, False if need to subscribe
      */
-    private void changeSatiety(int digit, boolean add) {
-        int newValue;
-
-        if (add) {
-            newValue = satiety + digit;
-        } else {
-            newValue = satiety - digit;
-            if (newValue < 0) {
-                newValue = 0;
-            }
-        }
-
-        satiety = Math.min(newValue, MAX_SATIETY);
+    private void changeSatiety(int digit) {
+        satiety = Math.min(satiety + digit, MAX_SATIETY);
     }
 
     /**
@@ -169,18 +129,8 @@ public abstract class Animal implements Actions {
      * @param digit Digit which need to add or subscribe
      * @param add   True if need to add, False if need to subscribe
      */
-    private void changePurity(int digit, boolean add) {
-        int newValue;
-
-        if (add) {
-            newValue = purity + digit;
-        } else {
-            newValue = purity - digit;
-            if (newValue < 0) {
-                newValue = 0;
-            }
-        }
-        purity = Math.min(newValue, MAX_PURITY);
+    private void changePurity(int digit) {
+        purity = Math.min(purity + digit, MAX_PURITY);
     }
 
     private void changeAge() {
