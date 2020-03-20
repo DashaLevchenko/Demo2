@@ -1,9 +1,11 @@
 # Compiled class file
 *.class
-
+*.txt
 /target/
 .idea/
 /out/
+*.uml
+*.plantuml
 # Log file
 *.log
 
