@@ -3,6 +3,8 @@ package demo;
 
 import demo.exceptions.*;
 
+import java.util.*;
+
 public abstract class Animal implements Actions {
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
@@ -32,93 +34,63 @@ public abstract class Animal implements Actions {
     }
 
     @Override
-    public void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
+    public String toFeed() throws PetGrewUpException, PetDiedException {
         changeHealthPoint(2, true);//add methods increase health
         changeHappiness(1, true);
         changeSatiety(10, true);
         changeAge();
         changePurity(2, false);
-        checkStage(); //have to be static...
-
+        return checkNextAction();
     }
 
     @Override
-    public void toPlay() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException, PetWantsToScratchTummyException {
+    public String toPlay() throws PetGrewUpException, PetDiedException {
         changeHealthPoint(2, false);
         changeHappiness(4, true);
         changeSatiety(1, false);
         changeAge();
         changePurity(2, false);
-        checkStage();
+        return checkNextAction();
     }
 
     @Override
-    public void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
+    public String toScold() throws PetGrewUpException, PetDiedException {
         changeHealthPoint(2, false);
         changeHappiness(2, false);
         changeSatiety(1, false);
-
         changeAge();
-        checkStage();
+        return checkNextAction();
     }
 
     @Override
-    public void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
+    public String toStroke() throws PetGrewUpException, PetDiedException {
         changeHealthPoint(2, false);
         changeHappiness(2, true);
         changeSatiety(1, false);
         changeAge();
-        checkStage();
+        return checkNextAction();
     }
 
     @Override
-    public void toWash() throws PetDiedException, PetGrewUpException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException {
+    public String toWash() throws PetDiedException, PetGrewUpException {
         changeHealthPoint(2, true);
         changeSatiety(1, false);
         changeAge();
         changePurity(5, true);
-        checkStage();
+        return checkNextAction();
     }
 
 
     @Override
-    public void toHeal() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException, PetWantsToScratchTummyException {
+    public String toHeal() throws PetGrewUpException, PetDiedException {
         changeHealthPoint(18, true);
         changeHappiness(2, false);
         changeSatiety(2, false);
         changeAge();
         changePurity(2, false);
-        checkStage();
+        return checkNextAction();
     }
 
-    public void checkStage() throws PetDiedException, PetGrewUpException, PetIsHungryException, PetIsIllException, PetIsDirtyException, PetWantsToPlayException, PetWantsToScratchTummyException, OopsYourShoesIsWetException {
-        if (healthPoint <= MIN_HEALTH_POINT) {
-            throw new PetDiedException("Your pet is dead. Game over.");
-        }
-        if (age > MAX_AGE) {
-            throw new PetGrewUpException("Congratulations! Your pet has been grew up! \n Game over.");
-        }
-
-        if (satiety < 10) {
-            throw new PetIsHungryException("I'm hungry!");
-        }
-        if (isItSick && healthPoint < 20) {
-            throw new PetIsIllException("Something wrong, I'm feeling bad...");
-        }
-        if (purity <= 6) {
-            throw new PetIsDirtyException("I'm dirty. You know what to do!)");
-        }
-        if (happiness < 4 && satiety < 15) {
-            throw new OopsYourShoesIsWetException("Oops! Your shoes is wet...");
-        }
-        if (happiness < 5) {
-            throw new PetWantsToPlayException("Play with me or your shoes will suffer!");
-        }
-        if (happiness < 7) {
-            throw new PetWantsToScratchTummyException("Purrr! Scratch my tummy!");
-        }
-
-    }
 
     /**
      * This method changes field {@code healthPoint}.
@@ -213,9 +185,56 @@ public abstract class Animal implements Actions {
 
     private void changeAge() {
         if (age < MAX_AGE) {
-            age += 0.2;
+            age += 0.5;
         }
     }
+
+    private String checkNextAction(){
+        HashMap<String, Double> sp = new HashMap<>();
+        sp.put("healthPoint", calculatePercent(healthPoint, MAX_HEALTH_POINT));
+        sp.put("happiness", calculatePercent(happiness, MAX_HAPPINESS));
+        sp.put("satiety", calculatePercent(satiety, MAX_SATIETY));
+        sp.put("purity", calculatePercent(purity, MAX_PURITY));
+        Double min = Collections.min(sp.values());
+        String message = null;
+        switch (getKeyFromValue(sp, min)){
+            case "healthPoint" :
+                message = "Something wrong, I'm feeling bad...";
+                break;
+            case "happiness" :
+                if(sp.get("happiness") < 50) {
+                    message = "Play with me!";
+                }
+                else{
+                    message = "Purrr! Scratch my tummy!";
+                }
+                break;
+            case "satiety" :
+                message = "I'm hungry!";
+                break;
+            case "purity":
+                message = "I'm dirty. You know what to do!";
+                break;
+            default:
+                message = "Shit happens";
+                break;
+        }
+
+        return message;
+    }
+    private static String getKeyFromValue(HashMap<String, Double> hm, Double value) {
+        for (String keyName: hm.keySet()) {
+            if (hm.get(keyName).equals(value)) {
+                return keyName;
+            }
+        }
+        return "";
+    }
+
+    private double calculatePercent(int presentValue, int maxValue){
+        return (double)presentValue/maxValue;
+    }
+
 
     public int getHealthPoint() {
         return healthPoint;

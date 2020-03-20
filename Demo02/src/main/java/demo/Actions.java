@@ -3,15 +3,18 @@ package demo;
 import demo.exceptions.*;
 
 public interface Actions {
-    void toFeed() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException;
 
-    void toPlay() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException;
+    String toFeed() throws PetGrewUpException, PetDiedException;
 
-    void toScold() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException;
+    String toPlay() throws PetGrewUpException, PetDiedException;
 
-    void toStroke() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException;
+    String toScold() throws PetGrewUpException, PetDiedException;
 
-    void toWash() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException;
+    String toStroke() throws PetGrewUpException, PetDiedException;
 
-    void toHeal() throws PetGrewUpException, PetDiedException, PetIsDirtyException, PetWantsToScratchTummyException, PetIsIllException, OopsYourShoesIsWetException, PetIsHungryException, PetWantsToPlayException;
+    String toWash() throws PetGrewUpException, PetDiedException;
+
+    String toHeal() throws PetGrewUpException, PetDiedException;
+
+
 }
