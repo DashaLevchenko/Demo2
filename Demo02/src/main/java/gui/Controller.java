@@ -20,11 +20,13 @@ import javafx.util.Duration;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.function.Function;
 
 public class Controller {
 
-    public static final int FAST_WAITING_MILLISECOND = 1500;
-    public static final int SLOW_WAITING_MILLISECONDS = 2700;
+    public static final int FAST_WAITING_MILLISECOND = 2000;
+    public static final int SLOW_WAITING_MILLISECONDS = 3500;
+
     @FXML
     private ProgressBar satiety;
 

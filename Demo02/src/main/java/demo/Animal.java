@@ -1,9 +1,11 @@
 package demo;
 
 
-import demo.exceptions.*;
+import demo.exceptions.PetDiedException;
+import demo.exceptions.PetGrewUpException;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
 
 public abstract class Animal implements Actions {
     public static final int MAX_AGE = 5;
@@ -35,111 +37,79 @@ public abstract class Animal implements Actions {
 
     @Override
     public String toFeed() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2);//add methods increase health
-        changeHappiness(1);
-        changeSatiety(10);
-        changePurity(2);
+        healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);//add methods increase health
+        happiness = changeConditions(1, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(10, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, happiness, MAX_HAPPINESS);
+        changeAge();
         return checkNextAction();
     }
 
     @Override
     public String toPlay() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2);
-        changeHappiness(4);
-        changeSatiety(1);
-        changePurity(2);
+        healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(4, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-1, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, purity, MAX_PURITY);
+        changeAge();
         return checkNextAction();
     }
 
     @Override
     public String toScold() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2);
-        changeHappiness(2);
-        changeSatiety(1);
+        healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(-2, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-1, satiety, MAX_SATIETY);
+        changeAge();
         return checkNextAction();
     }
 
     @Override
     public String toStroke() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(2);
-        changeHappiness(2);
-        changeSatiety(1);
+        healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(2, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-1, satiety, MAX_SATIETY);
+        changeAge();
         return checkNextAction();
     }
 
     @Override
     public String toWash() throws PetDiedException, PetGrewUpException {
-        changeHealthPoint(2);
-        changeSatiety(1);
-        changePurity(5);
+        healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);
+        satiety = changeConditions(-1, satiety, MAX_SATIETY);
+        purity = changeConditions(5, purity, MAX_PURITY);
+        changeAge();
         return checkNextAction();
     }
 
 
     @Override
     public String toHeal() throws PetGrewUpException, PetDiedException {
-        changeHealthPoint(18);
-        changeHappiness(2);
-        changeSatiety(2);
-        changePurity(2);
+        healthPoint = changeConditions(18, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(-2, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-2, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, purity, MAX_PURITY);
+        changeAge();
         return checkNextAction();
     }
 
 
-    /**
-     * This method changes field {@code healthPoint}.
-     * If add true, digit will added to {@code healthPoint},
-     * else digit will subscribe
-     *
-     * @param digit Digit which need to add or subscribe
-     */
-    private void changeHealthPoint(int digit) {
-        changeAge();
-        healthPoint = Math.min(healthPoint + digit, MAX_HEALTH_POINT);
-    }
-
-    /**
-     * This method changes field {@code happiness}.
-     * If add true, digit will added to {@code happiness},
-     * else digit will subscribe
-     *
-     * @param digit Digit which need to add or subscribe
-     * @param add   True if need to add, False if need to subscribe
-     */
-    private void changeHappiness(int digit) {
-        happiness = Math.min(happiness + digit, MAX_HAPPINESS);
-    }
-
-    /**
-     * This method changes field {@code satiety}.
-     * If add true, digit will added to {@code satiety},
-     * else digit will subscribe
-     *
-     * @param digit Digit which need to add or subscribe
-     */
-    private void changeSatiety(int digit) {
-        satiety = Math.min(satiety + digit, MAX_SATIETY);
-    }
-
-    /**
-     * This method changes field {@code purity}.
-     * If add true, digit will added to {@code purity},
-     * else digit will subscribe
-     *
-     * @param digit Digit which need to add or subscribe
-     * @param add   True if need to add, False if need to subscribe
-     */
-    private void changePurity(int digit) {
-        purity = Math.min(purity + digit, MAX_PURITY);
-    }
-
-    private void changeAge() {
+    private void changeAge() throws PetGrewUpException {
         if (age < MAX_AGE) {
             age += 0.5;
+        } else {
+            throw new PetGrewUpException("It's time to say goodbye...");
         }
     }
 
-    private String checkNextAction(){
+    private int changeConditions(int changeableValue, int currentValue, int maxValue) {
+        if (currentValue >= 0 || purity >= -10) {
+            return Math.min(changeableValue + currentValue, maxValue);
+        }
+        return 0;
+    }
+
+    public String checkNextAction() {
         HashMap<String, Double> sp = new HashMap<>();
         sp.put("healthPoint", calculatePercent(healthPoint, MAX_HEALTH_POINT));
         sp.put("happiness", calculatePercent(happiness, MAX_HAPPINESS));
@@ -147,19 +117,18 @@ public abstract class Animal implements Actions {
         sp.put("purity", calculatePercent(purity, MAX_PURITY));
         Double min = Collections.min(sp.values());
         String message = null;
-        switch (getKeyFromValue(sp, min)){
-            case "healthPoint" :
+        switch (getKeyFromValue(sp, min)) {
+            case "healthPoint":
                 message = "Something wrong, I'm feeling bad...";
                 break;
-            case "happiness" :
-                if(sp.get("happiness") < 50) {
+            case "happiness":
+                if (sp.get("happiness") < 50) {
                     message = "Play with me!";
-                }
-                else{
+                } else {
                     message = "Purrr! Scratch my tummy!";
                 }
                 break;
-            case "satiety" :
+            case "satiety":
                 message = "I'm hungry!";
                 break;
             case "purity":
@@ -172,8 +141,9 @@ public abstract class Animal implements Actions {
 
         return message;
     }
+
     private static String getKeyFromValue(HashMap<String, Double> hm, Double value) {
-        for (String keyName: hm.keySet()) {
+        for (String keyName : hm.keySet()) {
             if (hm.get(keyName).equals(value)) {
                 return keyName;
             }
@@ -181,8 +151,9 @@ public abstract class Animal implements Actions {
         return "";
     }
 
-    private double calculatePercent(int presentValue, int maxValue){
-        return (double)presentValue/maxValue;
+    private double calculatePercent(int presentValue, int maxValue) {
+
+        return (double) presentValue / maxValue;
     }
 
 
