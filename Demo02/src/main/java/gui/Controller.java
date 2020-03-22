@@ -20,7 +20,7 @@ import javafx.util.Duration;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.function.Function;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -38,6 +38,9 @@ public class Controller {
 
     @FXML
     private Label nameErrorLabel;
+
+    @FXML
+    private Label nameErrorLabelForCharacters;
 
     @FXML
     private ProgressBar purity;
@@ -95,6 +98,7 @@ public class Controller {
 
     private Cat cat;
 
+
     private Image defaultImage = new Image("gui/static/img/start.png");
     private Image eatingImage = new Image("gui/static/img/action/eating.png");
     private Image playing = new Image("gui/static/img/action/playing.png");
@@ -103,54 +107,54 @@ public class Controller {
     private Image washing = new Image("gui/static/img/action/washing.png");
     private Image scolding = new Image("gui/static/img/action/scold.png");
 
-
     private HashMap<String, Image> imageHashMap = new HashMap<>();
 
-    {imageHashMap.put("I'm dirty. You know what to do!", new Image("gui/static/img/state/dirty.png"));
-    imageHashMap.put("Something wrong, I'm feeling bad...", new Image("gui/static/img/state/needMedicine.png"));
-    imageHashMap.put("I'm hungry!", new Image("gui/static/img/state/wantToEat.png"));
-    imageHashMap.put("Play with me!", new Image("gui/static/img/state/wantToPlay.png"));
-    imageHashMap.put("Purrr! Scratch my tummy!", new Image("gui/static/img/state/wantToScratchTummy.png"));
-    imageHashMap.put("Oops, your shoes are wet... ", new Image("gui/static/img/state/slippers.png"));
+    {
+        imageHashMap.put("I'm dirty. You know what to do!", new Image("gui/static/img/state/dirty.png"));
+        imageHashMap.put("Something wrong, I'm feeling bad...", new Image("gui/static/img/state/needMedicine.png"));
+        imageHashMap.put("I'm hungry!", new Image("gui/static/img/state/wantToEat.png"));
+        imageHashMap.put("Play with me!", new Image("gui/static/img/state/wantToPlay.png"));
+        imageHashMap.put("Purrr! Scratch my tummy!", new Image("gui/static/img/state/wantToScratchTummy.png"));
+        imageHashMap.put("Oops, your shoes are wet", new Image("gui/static/img/state/slippers.png"));    }
+
+    public void printNextAction(String nextAction) {
+        setCatImage(imageHashMap.get(nextAction));
+        printThinkCloudMessage(nextAction);
     }
 
     @FXML
     void toScoldButton() {
-        setCatImage(scolding);
+        catImage.setImage(scolding);
         waitBeforeAction(action -> {
             try {
                 String nextAction = cat.toScold();
                 printNextAction(nextAction);
             } catch (PetDiedException | PetGrewUpException e) {
-                System.out.println(messageGameOver);
+                printGameOverException(e.getMessage());
             }
         }, FAST_WAITING_MILLISECOND);
-
-        upDateDataAndSetDefaultImage();
-    }
-    private void upDateDataAndSetDefaultImage() {
-        setDefaultImage();
         changeProgresses();
     }
+
     @FXML
     void toWashButton() {
-        setCatImage(washing);
+        catImage.setImage(washing);
 
         waitBeforeAction(action -> {
             try {
-                cat.toWash();
+                String nextAction = cat.toWash();
+                printNextAction(nextAction);
             } catch (PetDiedException | PetGrewUpException e) {
                 printGameOverException(e.getMessage());
             }
-
         }, FAST_WAITING_MILLISECOND);
 
-        upDateDataAndSetDefaultImage();
+        changeProgresses();
     }
 
     @FXML
     void toPlayButton() {
-        setCatImage(playing);
+        catImage.setImage(playing);
 
         waitBeforeAction(action -> {
             try {
@@ -161,15 +165,16 @@ public class Controller {
             }
         }, FAST_WAITING_MILLISECOND);
 
-        upDateDataAndSetDefaultImage();
+        changeProgresses();
     }
+
     private void setCatImage(Image image) {
         catImage.setImage(image);
     }
 
     @FXML
     void toHealButton() {
-        setCatImage(treatment);
+        catImage.setImage(treatment);
 
         waitBeforeAction(action -> {
             try {
@@ -180,12 +185,12 @@ public class Controller {
             }
         }, FAST_WAITING_MILLISECOND);
 
-        upDateDataAndSetDefaultImage();
+        changeProgresses();
     }
 
     @FXML
     void toStrokeButton() {
-        setCatImage(scratchingTummy);
+        catImage.setImage(scratchingTummy);
 
         waitBeforeAction(action -> {
             try {
@@ -196,12 +201,12 @@ public class Controller {
             }
         }, FAST_WAITING_MILLISECOND);
 
-        upDateDataAndSetDefaultImage();
+        changeProgresses();
     }
 
     @FXML
     void toFeedButton() {
-        setCatImage(eatingImage);
+        catImage.setImage(eatingImage);
 
         waitBeforeAction(action -> {
             try {
@@ -212,7 +217,7 @@ public class Controller {
             }
         }, FAST_WAITING_MILLISECOND);
 
-        upDateDataAndSetDefaultImage();
+        changeProgresses();
     }
 
 
@@ -228,31 +233,28 @@ public class Controller {
         stage.setIconified(true);
     }
 
+    Pattern onlyLatinAlphabet = Pattern.compile("[a-zA-Z]{0,20}[^0-9]");
+
     @FXML
     void createPet() {
         String inputName = nameTextInput.getText();
         if (inputName.isEmpty()) {
             nameErrorLabel.setVisible(true);
-        } else {
-            cat = new Cat(inputName);
-            changeProgresses();
-            setVisibleStartWindow(false);
-            catNameLabel.setText(inputName);
-
-            printThinkCloudMessage("Hello, my name is " + cat.getName());
-            waitBeforeAction(action -> {
-                String nextAction = cat.checkNextAction();
-                printNextAction(nextAction);
-                }, FAST_WAITING_MILLISECOND);
-            setDefaultImage();
+            nameErrorLabelForCharacters.setVisible(false);
+            }
+          else if (inputName.matches(String.valueOf(onlyLatinAlphabet))) {
+                cat = new Cat(inputName);
+                changeProgresses();
+                nameErrorLabel.setVisible(false);
+                starGameWindow.setVisible(false);
+                catNameLabel.setText(inputName);
+                anchorPaneWithInterface.setDisable(false);
+                printThinkCloudMessage("Hello, my name is " + cat.getName());
+            }
+          else
+              nameErrorLabel.setVisible(false);
+          nameErrorLabelForCharacters.setVisible(true);
         }
-    }
-
-    private void setVisibleStartWindow(boolean visible) {
-        nameErrorLabel.setVisible(visible);
-        starGameWindow.setVisible(visible);
-        anchorPaneWithInterface.setDisable(visible);
-
     @FXML
     void gameOverButtonPressed() {
         cancelButtonPressed();
@@ -264,10 +266,6 @@ public class Controller {
         messageGameOver.setText(message);
     }
 
-        private void printNextAction(String nextAction) {
-            setCatImage(imageHashMap.get(nextAction));
-            printThinkCloudMessage(nextAction);
-    }
 
     private void printThinkCloudMessage(String message) {
         thinkCloud.setVisible(true);
@@ -275,9 +273,9 @@ public class Controller {
         waitBeforeAction(actionEvent -> thinkCloud.setVisible(false), FAST_WAITING_MILLISECOND);
     }
 
-    private void setDefaultImage() {
-            waitBeforeAction(actionEvent -> setCatImage(defaultImage), SLOW_WAITING_MILLISECONDS);
-    }
+    /*private void setDefaultImage() {
+        waitBeforeAction(actionEvent -> catImage.setImage(defaultImage), SLOW_WAITING_MILLISECONDS);
+    }*/
 
     private void waitBeforeAction(EventHandler<ActionEvent> actionEvent, int millis) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(millis), actionEvent));
@@ -294,7 +292,7 @@ public class Controller {
         numberProgress.setText(presentValueString.replace(".0", "") + "/" + maxValue);
     }
 
-    private void changeProgresses(){
+    private void changeProgresses() {
         waitBeforeAction(
                 actionEvent -> {
                     changeProgressBarValue(cat.getHealthPoint(), Cat.MAX_HEALTH_POINT, health, healthNumber);
