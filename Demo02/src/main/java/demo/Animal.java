@@ -99,12 +99,12 @@ public abstract class Animal implements Actions {
         }
     }
 
-    private int changeConditions(int changeableValue, int currentValue, int maxValue) {
+    private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
         int newValue = currentValue + changeableValue;
         if (newValue > 0) {
             return Math.min(newValue, maxValue);
         } else {
-            return 0;
+            throw new PetDiedException("It's YOUR FAULT!");
         }
     }
 
@@ -151,7 +151,6 @@ public abstract class Animal implements Actions {
     }
 
     private double calculatePercent(int presentValue, int maxValue) {
-
         return (double) presentValue / maxValue;
     }
 
