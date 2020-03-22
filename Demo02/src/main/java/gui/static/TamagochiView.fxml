@@ -162,6 +162,7 @@
             <Label alignment="TOP_CENTER" layoutX="18.0" layoutY="94.0" maxHeight="162.0" maxWidth="312.0" prefHeight="41.0" prefWidth="312.0" styleClass="welcomeMessage" stylesheets="@style.css" text="Give name to your cat:" textAlignment="CENTER" wrapText="true" />
             <TextField fx:id="nameTextInput" layoutX="48.0" layoutY="150.0" prefHeight="25.0" prefWidth="270.0" promptText="Bulbasaur" styleClass="name_input_text" stylesheets="@style.css" />
             <Label fx:id="nameErrorLabel" layoutX="48.0" layoutY="136.0" styleClass="name_error_label" stylesheets="@style.css" text="Cat must have name" visible="false" />
+            <Label fx:id="nameErrorLabelForCharacters" layoutX="48.0" layoutY="136.0" styleClass="name_error_label" stylesheets="@style.css" text="Only Latin characters allowed" visible="false" />
          </children>
       </AnchorPane>
    </children>

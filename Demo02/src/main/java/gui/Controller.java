@@ -97,9 +97,8 @@ public class Controller {
     private ImageView catImage;
 
     private Cat cat;
+    private Pattern onlyLatinAlphabet = Pattern.compile("[a-zA-Z]{0,20}[^0-9]");
 
-
-    private Image defaultImage = new Image("gui/static/img/start.png");
     private Image eatingImage = new Image("gui/static/img/action/eating.png");
     private Image playing = new Image("gui/static/img/action/playing.png");
     private Image scratchingTummy = new Image("gui/static/img/action/scratchingTummy.png");
@@ -115,7 +114,8 @@ public class Controller {
         imageHashMap.put("I'm hungry!", new Image("gui/static/img/state/wantToEat.png"));
         imageHashMap.put("Play with me!", new Image("gui/static/img/state/wantToPlay.png"));
         imageHashMap.put("Purrr! Scratch my tummy!", new Image("gui/static/img/state/wantToScratchTummy.png"));
-        imageHashMap.put("Oops, your shoes are wet", new Image("gui/static/img/state/slippers.png"));    }
+        imageHashMap.put("Oops, your shoes are wet", new Image("gui/static/img/state/slippers.png"));
+    }
 
     public void printNextAction(String nextAction) {
         setCatImage(imageHashMap.get(nextAction));
@@ -233,7 +233,7 @@ public class Controller {
         stage.setIconified(true);
     }
 
-    Pattern onlyLatinAlphabet = Pattern.compile("[a-zA-Z]{0,20}[^0-9]");
+
 
     @FXML
     void createPet() {
@@ -241,20 +241,23 @@ public class Controller {
         if (inputName.isEmpty()) {
             nameErrorLabel.setVisible(true);
             nameErrorLabelForCharacters.setVisible(false);
-            }
-          else if (inputName.matches(String.valueOf(onlyLatinAlphabet))) {
+        } else {
+            if (inputName.matches(String.valueOf(onlyLatinAlphabet))) {
                 cat = new Cat(inputName);
                 changeProgresses();
                 nameErrorLabel.setVisible(false);
                 starGameWindow.setVisible(false);
-                catNameLabel.setText(inputName);
                 anchorPaneWithInterface.setDisable(false);
+                catNameLabel.setText(inputName);
                 printThinkCloudMessage("Hello, my name is " + cat.getName());
+                waitBeforeAction(acton -> printNextAction(cat.checkNextAction()), SLOW_WAITING_MILLISECONDS);
+            } else{
+                nameErrorLabel.setVisible(false);
+                nameErrorLabelForCharacters.setVisible(true);
             }
-          else
-              nameErrorLabel.setVisible(false);
-          nameErrorLabelForCharacters.setVisible(true);
         }
+    }
+
     @FXML
     void gameOverButtonPressed() {
         cancelButtonPressed();
@@ -270,12 +273,7 @@ public class Controller {
     private void printThinkCloudMessage(String message) {
         thinkCloud.setVisible(true);
         thinkCloudText.setText(message);
-        waitBeforeAction(actionEvent -> thinkCloud.setVisible(false), FAST_WAITING_MILLISECOND);
     }
-
-    /*private void setDefaultImage() {
-        waitBeforeAction(actionEvent -> catImage.setImage(defaultImage), SLOW_WAITING_MILLISECONDS);
-    }*/
 
     private void waitBeforeAction(EventHandler<ActionEvent> actionEvent, int millis) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(millis), actionEvent));
