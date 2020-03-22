@@ -13,7 +13,6 @@ public abstract class Animal implements Actions {
     public static final int MAX_HAPPINESS = 10;
     public static final int MAX_SATIETY = 50;
     public static final int MAX_PURITY = 10;
-    public static final int MIN_HEALTH_POINT = 0;
 
 
     private String name;
@@ -22,7 +21,6 @@ public abstract class Animal implements Actions {
     private int satiety;
     private double age;
     private int purity;
-    private boolean isItSick;
 
 
     public Animal(String name) {
@@ -31,7 +29,6 @@ public abstract class Animal implements Actions {
         satiety = 25;
         age = 0;
         purity = 0;
-        isItSick = false;
         this.name = name;
     }
 
@@ -103,10 +100,12 @@ public abstract class Animal implements Actions {
     }
 
     private int changeConditions(int changeableValue, int currentValue, int maxValue) {
-        if (currentValue >= 0 || purity >= -10) {
-            return Math.min(changeableValue + currentValue, maxValue);
+        int newValue = currentValue + changeableValue;
+        if (newValue > 0) {
+            return Math.min(newValue, maxValue);
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     public String checkNextAction() {
@@ -176,11 +175,6 @@ public abstract class Animal implements Actions {
     public int getPurity() {
         return purity;
     }
-
-    public boolean getIsItSick() {
-        return isItSick;
-    }
-
 
     public String getName() {
         return name;
