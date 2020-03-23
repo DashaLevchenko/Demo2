@@ -25,7 +25,6 @@ public abstract class Animal implements Actions {
     private double age;
     private int purity;
 
-
     public Animal(String name) {
         healthPoint = 25;
         happiness = 5;
@@ -93,10 +92,39 @@ public abstract class Animal implements Actions {
         return checkNextAction();
     }
 
+    @Override
+    public String toSing() throws PetGrewUpException, PetDiedException {
+        healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(10, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-2, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, purity, MAX_PURITY);
+        changeAge();
+        return checkNextAction();
+    }
+
+    @Override
+    public String toDance() throws PetGrewUpException, PetDiedException {
+        healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(15, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-5, satiety, MAX_SATIETY);
+        purity = changeConditions(-5, purity, MAX_PURITY);
+        changeAge();
+        return checkNextAction();
+    }
+
+    @Override
+    public String toWashDishes() throws PetGrewUpException, PetDiedException {
+        healthPoint = changeConditions(-1, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(-5, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-2, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, purity, MAX_PURITY);
+        changeAge();
+        return checkNextAction();
+    }
 
     private void changeAge() throws PetGrewUpException {
         if (age < MAX_AGE) {
-            age += 0.5;
+            age += 0.2;
         } else {
             throw new PetGrewUpException("It's time to say goodbye...");
         }
