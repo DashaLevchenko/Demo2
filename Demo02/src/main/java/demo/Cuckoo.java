@@ -1,7 +1,6 @@
 package demo;
 
 public class Cuckoo extends Animal{
-
     public Cuckoo(String name) {
         super(name);
     }
@@ -11,5 +10,4 @@ public class Cuckoo extends Animal{
     public void flyAway() {
         System.out.println("I was offended. Goodbye!");
     }
-
 }

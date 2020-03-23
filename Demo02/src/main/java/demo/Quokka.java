@@ -1,7 +1,6 @@
 package demo;
 
 public class Quokka extends Animal {
-
     public Quokka(String name) {
         super(name);
     }
