@@ -1,7 +1,8 @@
 # Demo2
 
 # Instructions:
-Name the tamagotchi
+When the programm starts you need to enter your pet's name and click the "Create button". Please note that only Latin characters are allowed.
+After the valid name is entered a 
 Select the action by pressing up/down and then pressing enter
 Each action will change the tamagotchi state
 Green color bar means All Ok, Red means the state is critical
@@ -9,13 +10,12 @@ Select the action that increases the critical state
 Repeat
 
 # Actions:
-Primary reaction
-Feed -> Increases Fullness
-Give Medicine -> Increases Health
-Go Potty -> Increases Bowel
-Play -> Increases Happiness
-Put To Bed -> Increases Energy
-Secondary reactions may increase/decrease other states
+Feed -> Increases health point, happiness, satiety. Decreases purity.
+Scold -> Decreases happiness, satiety, health.
+Wash -> Increases health, purity. Decreases satiety.
+Play -> Increases happiness. Decreases satiety, purity, health.
+Stroke -> Increases happiness. Decreases satiety.
+Heal -> Increases health. Decreases satiety, purity, happiness.
 
 # Automatic Actions:
 When the energy is below the lower_threshold, the pet will go to sleep.
