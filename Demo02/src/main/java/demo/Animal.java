@@ -7,7 +7,11 @@ import demo.exceptions.PetGrewUpException;
 import java.util.Collections;
 import java.util.HashMap;
 
+
 public abstract class Animal implements Actions {
+    /**
+     * Constants of maximum animal points.
+     */
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
     public static final int MAX_HAPPINESS = 10;
@@ -22,7 +26,11 @@ public abstract class Animal implements Actions {
     private double age;
     private int purity;
 
-
+    /**
+     * Start points of game.
+     *
+     * @param name input animal name
+     */
     public Animal(String name) {
         healthPoint = 25;
         happiness = 5;
@@ -90,7 +98,11 @@ public abstract class Animal implements Actions {
         return checkNextAction();
     }
 
-
+    /**
+     * Change current age on 0.5 points.
+     *
+     * @throws PetGrewUpException if the animal age >= MAX_AGE
+     */
     private void changeAge() throws PetGrewUpException {
         if (age < MAX_AGE) {
             age += 0.5;
@@ -99,6 +111,15 @@ public abstract class Animal implements Actions {
         }
     }
 
+    /**
+     * Changes current points of animal.
+     *
+     * @param changeableValue on how much changes point.
+     * @param currentValue which point changes.
+     * @param maxValue constant of maximum animal point.
+     * @return
+     * @throws PetDiedException when point less then 0.
+     */
     private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
         int newValue = currentValue + changeableValue;
         if (newValue > 0) {
@@ -108,12 +129,16 @@ public abstract class Animal implements Actions {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String checkNextAction() {
         HashMap<String, Double> sp = new HashMap<>();
-        sp.put("healthPoint", calculatePercent(healthPoint, MAX_HEALTH_POINT));
-        sp.put("happiness", calculatePercent(happiness, MAX_HAPPINESS));
-        sp.put("satiety", calculatePercent(satiety, MAX_SATIETY));
-        sp.put("purity", calculatePercent(purity, MAX_PURITY));
+        sp.put("healthPoint", Util.calculatePercent(healthPoint, MAX_HEALTH_POINT));
+        sp.put("happiness", Util.calculatePercent(happiness, MAX_HAPPINESS));
+        sp.put("satiety", Util.calculatePercent(satiety, MAX_SATIETY));
+        sp.put("purity", Util.calculatePercent(purity, MAX_PURITY));
         Double min = Collections.min(sp.values());
         String message = null;
         switch (getKeyFromValue(sp, min)) {
@@ -137,10 +162,16 @@ public abstract class Animal implements Actions {
                 message = "Shit happens";
                 break;
         }
-
         return message;
     }
 
+    /**
+     * Search point on hasMap.
+     *
+     * @param hm
+     * @param value
+     * @return
+     */
     private static String getKeyFromValue(HashMap<String, Double> hm, Double value) {
         for (String keyName : hm.keySet()) {
             if (hm.get(keyName).equals(value)) {
@@ -149,11 +180,6 @@ public abstract class Animal implements Actions {
         }
         return "";
     }
-
-    private double calculatePercent(int presentValue, int maxValue) {
-        return (double) presentValue / maxValue;
-    }
-
 
     public int getHealthPoint() {
         return healthPoint;

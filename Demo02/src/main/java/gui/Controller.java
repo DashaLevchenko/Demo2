@@ -125,6 +125,7 @@ public class Controller {
     @FXML
     void toScoldButton() {
         catImage.setImage(scolding);
+
         waitBeforeAction(action -> {
             try {
                 String nextAction = cat.toScold();
@@ -233,8 +234,6 @@ public class Controller {
         stage.setIconified(true);
     }
 
-
-
     @FXML
     void createPet() {
         String inputName = nameTextInput.getText();
@@ -251,7 +250,7 @@ public class Controller {
                 catNameLabel.setText(inputName);
                 printThinkCloudMessage("Hello, my name is " + cat.getName());
                 waitBeforeAction(acton -> printNextAction(cat.checkNextAction()), SLOW_WAITING_MILLISECONDS);
-            } else{
+            } else {
                 nameErrorLabel.setVisible(false);
                 nameErrorLabelForCharacters.setVisible(true);
             }
