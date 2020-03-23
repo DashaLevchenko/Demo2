@@ -3,25 +3,44 @@ package demo;
 import demo.exceptions.PetDiedException;
 import demo.exceptions.PetGrewUpException;
 
+/**
+ * Class of pet.
+ */
 public class Parrot extends Animal {
-    public Parrot (String name){
+    public Parrot (String name) {
         super(name);
     }
-
-    @Override
+    
+    /**
+     * Pet is sad.
+     *
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     public String toSing() throws PetGrewUpException, PetDiedException {
-        toDance();
-        return super.toSing();
+        String message = "I feel sad. Time to sing!";
+        return message;
     }
 
-    @Override
-    public String toWash() throws PetDiedException, PetGrewUpException {
-        toSing();
-        return super.toWash();
-    }
-
-    @Override
-    public String toFeed() throws PetGrewUpException, PetDiedException {
-        return super.toFeed();
-    }
+    
+    /*** Pet eats.
+     * *
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
+    public String toEat() throws PetGrewUpException, PetDiedException {
+        String message = "Something delicious smells... Is it my snacks?";
+        return message;
+        }
+        /**
+         * Pet flies.
+         *
+         * @return
+         * @throws PetGrewUpException
+         * @throws PetDiedException
+         */
+        public String toFly() throws PetGrewUpException, PetDiedException {
+            String message = "Hoorah, I am free!";
+            return message;
+        }
 }

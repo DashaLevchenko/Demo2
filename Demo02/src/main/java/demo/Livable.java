@@ -16,11 +16,4 @@ public interface Livable {
 
     String toHeal() throws PetGrewUpException, PetDiedException;
 
-    String toSing() throws PetGrewUpException, PetDiedException;
-
-    String toDance () throws PetGrewUpException, PetDiedException;
-
-    String toWashDishes() throws PetGrewUpException, PetDiedException;
-
-
 }
