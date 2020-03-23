@@ -2,12 +2,8 @@
 
 # Instructions:
 When the programm starts you need to enter your pet's name and click the "Create button". Please note that only Latin characters are allowed.
-After the valid name is entered a 
-Select the action by pressing up/down and then pressing enter
-Each action will change the tamagotchi state
-Green color bar means All Ok, Red means the state is critical
-Select the action that increases the critical state
-Repeat
+After the valid name is entered you will be able to select 6 actions that will be applied to the Cat: Feed, Scold, Wash, Play, Stroke, Heal. You can either fulfill the needs of the pet by pressing the 6 six buttons in the specified order or just click on them randomly. Each action will change the pet state.
+Some parameters, as Health, Satiety and Age are critical. When Health parameter points reach zero, the cat dies and game overs. When Satiety parameter is zero, the cat dies and game overs. When Age reaches maximum age, the cat is considered to be grown up and the game overs.
 
 # Actions:
 Feed -> Increases health point, happiness, satiety. Decreases purity.
@@ -17,10 +13,8 @@ Play -> Increases happiness. Decreases satiety, purity, health.
 Stroke -> Increases happiness. Decreases satiety.
 Heal -> Increases health. Decreases satiety, purity, happiness.
 
-# Automatic Actions:
-When the energy is below the lower_threshold, the pet will go to sleep.
-When the bowel is below the lower_threshold, the pet will poop
-Game over scenarios:
+# Game over scenarios:
 When the health is zero
+When the satiety is zero
 When the age reaches maximum age
 The user selects to quit
