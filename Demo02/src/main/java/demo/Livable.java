@@ -2,7 +2,7 @@ package demo;
 
 import demo.exceptions.*;
 
-public interface Actions {
+public interface Livable {
 
     String toFeed() throws PetGrewUpException, PetDiedException;
 
@@ -15,12 +15,6 @@ public interface Actions {
     String toWash() throws PetGrewUpException, PetDiedException;
 
     String toHeal() throws PetGrewUpException, PetDiedException;
-
-    String toSing() throws PetGrewUpException, PetDiedException;
-
-    String toDance () throws PetGrewUpException, PetDiedException;
-
-    String toWashDishes() throws PetGrewUpException, PetDiedException;
 
 
 }

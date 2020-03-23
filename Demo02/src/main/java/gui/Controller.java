@@ -221,7 +221,6 @@ public class Controller {
         changeProgresses();
     }
 
-
     @FXML
     void cancelButtonPressed() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -268,7 +267,6 @@ public class Controller {
         messageGameOver.setText(message);
     }
 
-
     private void printThinkCloudMessage(String message) {
         thinkCloud.setVisible(true);
         thinkCloudText.setText(message);
@@ -278,7 +276,6 @@ public class Controller {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(millis), actionEvent));
         timeline.play();
     }
-
 
     private void changeProgressBarValue(double presentValue, int maxValue, ProgressBar progressBar, Label numberProgress) {
         double progress = presentValue / maxValue;
