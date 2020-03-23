@@ -10,7 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 
+
 public abstract class Animal implements Actions {
+    /**
+     * Constants of maximum animal points.
+     */
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
     public static final int MAX_HAPPINESS = 10;
@@ -25,6 +29,12 @@ public abstract class Animal implements Actions {
     private double age;
     private int purity;
 
+
+    /**
+     * Start points of game.
+     *
+     * @param name input animal name
+     */
     public Animal(String name) {
         healthPoint = 25;
         happiness = 5;
@@ -92,6 +102,12 @@ public abstract class Animal implements Actions {
         return checkNextAction();
     }
 
+
+    /**
+     * Change current age on 0.5 points.
+     *
+     * @throws PetGrewUpException if the animal age >= MAX_AGE
+     */
     @Override
     public String toSing() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
@@ -122,6 +138,7 @@ public abstract class Animal implements Actions {
         return checkNextAction();
     }
 
+
     private void changeAge() throws PetGrewUpException {
         if (age < MAX_AGE) {
             age += 0.2;
@@ -130,6 +147,15 @@ public abstract class Animal implements Actions {
         }
     }
 
+    /**
+     * Changes current points of animal.
+     *
+     * @param changeableValue on how much changes point.
+     * @param currentValue which point changes.
+     * @param maxValue constant of maximum animal point.
+     * @return
+     * @throws PetDiedException when point less then 0.
+     */
     private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
         int newValue = currentValue + changeableValue;
         if (newValue > 0) {
@@ -139,6 +165,10 @@ public abstract class Animal implements Actions {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String checkNextAction() {
         HashMap<Double, String> sp = new HashMap<>();
 
@@ -147,6 +177,7 @@ public abstract class Animal implements Actions {
         sp.put(UtilityMethods.calculatePercent(satiety, MAX_SATIETY), "satiety");
         sp.put(UtilityMethods.calculatePercent(purity, MAX_PURITY), "purity");
         Double min = Collections.min(sp.keySet());
+
         String message = null;
         switch (sp.get(min)) {
             case "healthPoint":
@@ -170,6 +201,23 @@ public abstract class Animal implements Actions {
                 break;
         }
         return message;
+    }
+
+
+    /**
+     * Search point on hasMap.
+     *
+     * @param hm
+     * @param value
+     * @return
+     */
+    private static String getKeyFromValue(HashMap<String, Double> hm, Double value) {
+        for (String keyName : hm.keySet()) {
+            if (hm.get(keyName).equals(value)) {
+                return keyName;
+            }
+        }
+        return "";
     }
 
     public int getHealthPoint() {

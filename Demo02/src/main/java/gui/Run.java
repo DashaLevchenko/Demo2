@@ -11,6 +11,12 @@ import java.io.IOException;
 
 public class Run extends Application {
 
+    /**
+     * Creates a new instance of stage.
+     *
+     * @param primaryStage The primary Stage is constructed by the platform.
+     * @throws IOException interrupted I/O operations
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("static/TamagochiView.fxml"));
@@ -19,7 +25,6 @@ public class Run extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
-
 
     public static void launchApp(String[] args) {
         launch(args);
