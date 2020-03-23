@@ -1,6 +1,6 @@
 # Demo2
 
-#Instructions:
+# Instructions:
 Name the tamagotchi
 Select the action by pressing up/down and then pressing enter
 Each action will change the tamagotchi state
@@ -8,7 +8,7 @@ Green color bar means All Ok, Red means the state is critical
 Select the action that increases the critical state
 Repeat
 
-#Actions:
+# Actions:
 Primary reaction
 Feed -> Increases Fullness
 Give Medicine -> Increases Health
@@ -17,7 +17,7 @@ Play -> Increases Happiness
 Put To Bed -> Increases Energy
 Secondary reactions may increase/decrease other states
 
-#Automatic Actions:
+# Automatic Actions:
 When the energy is below the lower_threshold, the pet will go to sleep.
 When the bowel is below the lower_threshold, the pet will poop
 Game over scenarios:
