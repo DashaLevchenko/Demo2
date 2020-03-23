@@ -2,7 +2,7 @@ package demo;
 
 import demo.exceptions.*;
 
-public interface Actions {
+public interface Livable {
 
     String toFeed() throws PetGrewUpException, PetDiedException;
 

@@ -4,6 +4,8 @@ package demo;
 import demo.exceptions.PetDiedException;
 import demo.exceptions.PetGrewUpException;
 
+import java.util.Random;
+
 
 /**
  * Class of pet.
@@ -44,6 +46,7 @@ public class Cuckoo extends Animal{
      * @throws PetDiedException
      */
     public String countAge(int age) throws PetDiedException, PetGrewUpException {
+        Random random = new Random();
         String message = "You will lived: ";
         age = age + random.nextInt(80);
         return message + age;
