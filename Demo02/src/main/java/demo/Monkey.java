@@ -8,20 +8,6 @@ public class Monkey extends Animal {
         super(name);
     }
 
-    @Override
-    public String toWashDishes() throws PetGrewUpException, PetDiedException {
-        return super.toWashDishes();
-    }
-
-    @Override
-    public String toDance() throws PetGrewUpException, PetDiedException {
-        return super.toDance();
-    }
-
-    @Override
-    public String toFeed() throws PetGrewUpException, PetDiedException {
-       return checkNextAction();
-    }
 
     @Override
     public String toPlay() throws PetGrewUpException, PetDiedException {

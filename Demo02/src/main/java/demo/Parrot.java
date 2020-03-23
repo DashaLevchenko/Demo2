@@ -8,17 +8,6 @@ public class Parrot extends Animal {
         super(name);
     }
 
-    @Override
-    public String toSing() throws PetGrewUpException, PetDiedException {
-        toDance();
-        return super.toSing();
-    }
-
-    @Override
-    public String toWash() throws PetDiedException, PetGrewUpException {
-        toSing();
-        return super.toWash();
-    }
 
     @Override
     public String toFeed() throws PetGrewUpException, PetDiedException {
