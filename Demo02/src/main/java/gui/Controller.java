@@ -125,6 +125,7 @@ public class Controller {
     @FXML
     void toScoldButton() {
         catImage.setImage(scolding);
+
         waitBeforeAction(action -> {
             try {
                 String nextAction = cat.toScold();
@@ -220,7 +221,6 @@ public class Controller {
         changeProgresses();
     }
 
-
     @FXML
     void cancelButtonPressed() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -232,8 +232,6 @@ public class Controller {
         Stage stage = (Stage) hideButton.getScene().getWindow();
         stage.setIconified(true);
     }
-
-
 
     @FXML
     void createPet() {
@@ -251,7 +249,7 @@ public class Controller {
                 catNameLabel.setText(inputName);
                 printThinkCloudMessage("Hello, my name is " + cat.getName());
                 waitBeforeAction(acton -> printNextAction(cat.checkNextAction()), SLOW_WAITING_MILLISECONDS);
-            } else{
+            } else {
                 nameErrorLabel.setVisible(false);
                 nameErrorLabelForCharacters.setVisible(true);
             }
@@ -269,7 +267,6 @@ public class Controller {
         messageGameOver.setText(message);
     }
 
-
     private void printThinkCloudMessage(String message) {
         thinkCloud.setVisible(true);
         thinkCloudText.setText(message);
@@ -279,7 +276,6 @@ public class Controller {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(millis), actionEvent));
         timeline.play();
     }
-
 
     private void changeProgressBarValue(double presentValue, int maxValue, ProgressBar progressBar, Label numberProgress) {
         double progress = presentValue / maxValue;

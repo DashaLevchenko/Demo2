@@ -1,15 +1,48 @@
 package demo;
 
+import demo.exceptions.PetDiedException;
+import demo.exceptions.PetGrewUpException;
+
+/**
+ * Class of pet.
+ */
 public class Quokka extends Animal {
     public Quokka(String name) {
         super(name);
     }
 
-    public void smile() {
-        System.out.println("Quokka always happy :))))))");
+    /**
+     * Pet is happy.
+     *
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
+    public String smile() throws PetGrewUpException, PetDiedException {
+        String message = "Quokka always happy :))))))";
+        return message;
     }
-    public void photoWithHuman() {
+
+    /**
+     * Pet make photo with human.
+     *
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
+    public String photoWithHuman() throws PetGrewUpException, PetDiedException {
+        String message = "Click photo";
         smile();
-        System.out.println("Click photo");
+        return message;
+    }
+
+    /**
+     * Pet jump.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
+    public String toJump() throws PetGrewUpException, PetDiedException {
+        String message = "Jump!!";
+        return message;
     }
 }

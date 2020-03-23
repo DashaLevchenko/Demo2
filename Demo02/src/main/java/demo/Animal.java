@@ -7,16 +7,17 @@ import demo.util.UtilityMethods;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedMap;
 
-public abstract class Animal implements Actions {
+
+public abstract class Animal implements Livable {
+    /**
+     * Constants of maximum animal points.
+     */
     public static final int MAX_AGE = 5;
     public static final int MAX_HEALTH_POINT = 50;
     public static final int MAX_HAPPINESS = 10;
     public static final int MAX_SATIETY = 50;
     public static final int MAX_PURITY = 10;
-
 
     private String name;
     private int healthPoint;
@@ -25,6 +26,11 @@ public abstract class Animal implements Actions {
     private double age;
     private int purity;
 
+    /**
+     * Start points of game.
+     *
+     * @param name input animal name
+     */
     public Animal(String name) {
         healthPoint = 25;
         happiness = 5;
@@ -81,7 +87,6 @@ public abstract class Animal implements Actions {
         return checkNextAction();
     }
 
-
     @Override
     public String toHeal() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(18, healthPoint, MAX_HEALTH_POINT);
@@ -91,54 +96,11 @@ public abstract class Animal implements Actions {
         changeAge();
         return checkNextAction();
     }
-
-    @Override
-    public String toSing() throws PetGrewUpException, PetDiedException {
-        healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
-        happiness = changeConditions(10, happiness, MAX_HAPPINESS);
-        satiety = changeConditions(-2, satiety, MAX_SATIETY);
-        purity = changeConditions(-2, purity, MAX_PURITY);
-        changeAge();
-        return checkNextAction();
-    }
-
-    @Override
-    public String toDance() throws PetGrewUpException, PetDiedException {
-        healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
-        happiness = changeConditions(15, happiness, MAX_HAPPINESS);
-        satiety = changeConditions(-5, satiety, MAX_SATIETY);
-        purity = changeConditions(-5, purity, MAX_PURITY);
-        changeAge();
-        return checkNextAction();
-    }
-
-    @Override
-    public String toWashDishes() throws PetGrewUpException, PetDiedException {
-        healthPoint = changeConditions(-1, healthPoint, MAX_HEALTH_POINT);
-        happiness = changeConditions(-5, happiness, MAX_HAPPINESS);
-        satiety = changeConditions(-2, satiety, MAX_SATIETY);
-        purity = changeConditions(-2, purity, MAX_PURITY);
-        changeAge();
-        return checkNextAction();
-    }
-
-    private void changeAge() throws PetGrewUpException {
-        if (age < MAX_AGE) {
-            age += 0.2;
-        } else {
-            throw new PetGrewUpException("It's time to say goodbye...");
-        }
-    }
-
-    private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
-        int newValue = currentValue + changeableValue;
-        if (newValue > 0) {
-            return Math.min(newValue, maxValue);
-        } else {
-            throw new PetDiedException("It's YOUR FAULT!");
-        }
-    }
-
+    /**
+     * Predicted next action with calculate percentages.
+     *
+     * @return
+     */
     public String checkNextAction() {
         HashMap<Double, String> sp = new HashMap<>();
 
@@ -147,6 +109,7 @@ public abstract class Animal implements Actions {
         sp.put(UtilityMethods.calculatePercent(satiety, MAX_SATIETY), "satiety");
         sp.put(UtilityMethods.calculatePercent(purity, MAX_PURITY), "purity");
         Double min = Collections.min(sp.keySet());
+
         String message = null;
         switch (sp.get(min)) {
             case "healthPoint":
@@ -195,4 +158,37 @@ public abstract class Animal implements Actions {
     public String getName() {
         return name;
     }
+
+    /**
+     * Change current age on 0.5 points.
+     *
+     * @throws PetGrewUpException if the animal age >= MAX_AGE
+     */
+    private void changeAge() throws PetGrewUpException {
+        if (age < MAX_AGE) {
+            age += 0.5;
+        } else {
+            throw new PetGrewUpException("Congratulations! Your pet has been grew up! Game over.");
+        }
+    }
+
+    /**
+     * Changes current points of animal.
+     *
+     * @param changeableValue on how much changes point.
+     * @param currentValue which point changes.
+     * @param maxValue constant of maximum animal point.
+     * @return
+     * @throws PetDiedException when point less then 0.
+     */
+    private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
+        int newValue = currentValue + changeableValue;
+        if (newValue > 0) {
+            return Math.min(newValue, maxValue);
+        } else {
+            throw new PetDiedException("Your pet is dead. Game over.");
+        }
+    }
+
+
 }
