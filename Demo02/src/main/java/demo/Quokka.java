@@ -7,7 +7,6 @@ import demo.exceptions.PetGrewUpException;
  * Class of pet.
  */
 public class Quokka extends Animal {
-
     public Quokka(String name) {
         super(name);
     }

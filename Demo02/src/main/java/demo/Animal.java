@@ -3,9 +3,12 @@ package demo;
 
 import demo.exceptions.PetDiedException;
 import demo.exceptions.PetGrewUpException;
+import demo.util.UtilityMethods;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.SortedMap;
 
 
 public abstract class Animal implements Actions {
@@ -25,6 +28,7 @@ public abstract class Animal implements Actions {
     private int satiety;
     private double age;
     private int purity;
+
 
     /**
      * Start points of game.
@@ -98,14 +102,46 @@ public abstract class Animal implements Actions {
         return checkNextAction();
     }
 
+
     /**
      * Change current age on 0.5 points.
      *
      * @throws PetGrewUpException if the animal age >= MAX_AGE
      */
+    @Override
+    public String toSing() throws PetGrewUpException, PetDiedException {
+        healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(10, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-2, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, purity, MAX_PURITY);
+        changeAge();
+        return checkNextAction();
+    }
+
+    @Override
+    public String toDance() throws PetGrewUpException, PetDiedException {
+        healthPoint = changeConditions(1, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(15, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-5, satiety, MAX_SATIETY);
+        purity = changeConditions(-5, purity, MAX_PURITY);
+        changeAge();
+        return checkNextAction();
+    }
+
+    @Override
+    public String toWashDishes() throws PetGrewUpException, PetDiedException {
+        healthPoint = changeConditions(-1, healthPoint, MAX_HEALTH_POINT);
+        happiness = changeConditions(-5, happiness, MAX_HAPPINESS);
+        satiety = changeConditions(-2, satiety, MAX_SATIETY);
+        purity = changeConditions(-2, purity, MAX_PURITY);
+        changeAge();
+        return checkNextAction();
+    }
+
+
     private void changeAge() throws PetGrewUpException {
         if (age < MAX_AGE) {
-            age += 0.5;
+            age += 0.2;
         } else {
             throw new PetGrewUpException("It's time to say goodbye...");
         }
@@ -134,19 +170,21 @@ public abstract class Animal implements Actions {
      * @return
      */
     public String checkNextAction() {
-        HashMap<String, Double> sp = new HashMap<>();
-        sp.put("healthPoint", Util.calculatePercent(healthPoint, MAX_HEALTH_POINT));
-        sp.put("happiness", Util.calculatePercent(happiness, MAX_HAPPINESS));
-        sp.put("satiety", Util.calculatePercent(satiety, MAX_SATIETY));
-        sp.put("purity", Util.calculatePercent(purity, MAX_PURITY));
-        Double min = Collections.min(sp.values());
+        HashMap<Double, String> sp = new HashMap<>();
+
+        sp.put(UtilityMethods.calculatePercent(healthPoint, MAX_HEALTH_POINT), "healthPoint");
+        sp.put(UtilityMethods.calculatePercent(happiness, MAX_HAPPINESS), "happiness");
+        sp.put(UtilityMethods.calculatePercent(satiety, MAX_SATIETY), "satiety");
+        sp.put(UtilityMethods.calculatePercent(purity, MAX_PURITY), "purity");
+        Double min = Collections.min(sp.keySet());
+
         String message = null;
-        switch (getKeyFromValue(sp, min)) {
+        switch (sp.get(min)) {
             case "healthPoint":
                 message = "Something wrong, I'm feeling bad...";
                 break;
             case "happiness":
-                if (sp.get("happiness") < 50) {
+                if (UtilityMethods.calculatePercent(happiness, MAX_HAPPINESS) < 50) {
                     message = "Play with me!";
                 } else {
                     message = "Purrr! Scratch my tummy!";
@@ -164,6 +202,7 @@ public abstract class Animal implements Actions {
         }
         return message;
     }
+
 
     /**
      * Search point on hasMap.

@@ -1,16 +1,14 @@
 package demo;
 
+
 import demo.exceptions.PetDiedException;
 import demo.exceptions.PetGrewUpException;
 
-import java.util.Random;
 
 /**
  * Class of pet.
  */
-public class Cuckoo extends Animal {
-
-    Random random = new Random();
+public class Cuckoo extends Animal{
 
     public Cuckoo(String name) {
         super(name);
