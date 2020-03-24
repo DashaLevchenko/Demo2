@@ -3,7 +3,7 @@ package demo;
 
 import demo.exceptions.PetDiedException;
 import demo.exceptions.PetGrewUpException;
-import demo.util.UtilityMethods;
+import demo.util.UtilityMethod;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -104,10 +104,10 @@ public abstract class Animal implements Livable {
     public String checkNextAction() {
         HashMap<Double, String> sp = new HashMap<>();
 
-        sp.put(UtilityMethods.calculatePercent(healthPoint, MAX_HEALTH_POINT), "healthPoint");
-        sp.put(UtilityMethods.calculatePercent(happiness, MAX_HAPPINESS), "happiness");
-        sp.put(UtilityMethods.calculatePercent(satiety, MAX_SATIETY), "satiety");
-        sp.put(UtilityMethods.calculatePercent(purity, MAX_PURITY), "purity");
+        sp.put(UtilityMethod.calculatePercent(healthPoint, MAX_HEALTH_POINT), "healthPoint");
+        sp.put(UtilityMethod.calculatePercent(happiness, MAX_HAPPINESS), "happiness");
+        sp.put(UtilityMethod.calculatePercent(satiety, MAX_SATIETY), "satiety");
+        sp.put(UtilityMethod.calculatePercent(purity, MAX_PURITY), "purity");
         Double min = Collections.min(sp.keySet());
 
         String message = null;
@@ -116,7 +116,7 @@ public abstract class Animal implements Livable {
                 message = "Something wrong, I'm feeling bad...";
                 break;
             case "happiness":
-                if (UtilityMethods.calculatePercent(happiness, MAX_HAPPINESS) < 50) {
+                if (UtilityMethod.calculatePercent(happiness, MAX_HAPPINESS) < 50) {
                     message = "Play with me!";
                 } else {
                     message = "Purrr! Scratch my tummy!";
