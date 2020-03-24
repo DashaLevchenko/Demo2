@@ -1,7 +1,7 @@
 package demo.exceptions;
 
 /**
- * The class indicates when pet point less then 0
+ * The class indicates when pet health point less then 0
  * that a might to catch exception.
  */
 public class PetDiedException extends Exception {
