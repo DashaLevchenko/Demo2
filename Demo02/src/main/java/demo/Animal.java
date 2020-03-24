@@ -144,7 +144,10 @@ public abstract class Animal implements Livable {
      *
      * @return
      */
-    public String checkNextAction() {
+    public String checkNextAction() throws PetDiedException {
+        if (healthPoint <= 0) {
+            throw new PetDiedException("Your pet is dead. Game over.");
+        }
         HashMap<Double, String> sp = new HashMap<>();
 
         sp.put(UtilityMethod.calculatePercent(healthPoint, MAX_HEALTH_POINT), "healthPoint");
@@ -222,14 +225,16 @@ public abstract class Animal implements Livable {
      * @param currentValue    which point changes.
      * @param maxValue        constant of maximum animal point.
      * @return
-     * @throws PetDiedException when point less then 0.
+     * @throws PetDiedException when point 0 or less then 0.
      */
-    private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
+    private int changeConditions(int changeableValue, int currentValue, int maxValue) {
         int newValue = currentValue + changeableValue;
-        if (healthPoint < 0 || newValue < 0) {
-            throw new PetDiedException("Your pet is dead. Game over.");
-        } else {
+        if (newValue > 0) {
             return Math.min(newValue, maxValue);
+        } else {
+            return 0;
         }
     }
 }
+
+
