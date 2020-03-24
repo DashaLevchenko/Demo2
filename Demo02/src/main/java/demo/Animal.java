@@ -52,7 +52,7 @@ public abstract class Animal implements Livable {
         healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);//add methods increase health
         happiness = changeConditions(1, happiness, MAX_HAPPINESS);
         satiety = changeConditions(10, satiety, MAX_SATIETY);
-        purity = changeConditions(-2, happiness, MAX_HAPPINESS);
+        purity = changeConditions(-2, happiness, MAX_PURITY);
         changeAge();
         return checkNextAction();
     }
