@@ -22,6 +22,5 @@ Some parameters, as Health, Satiety and Age are critical. When Health parameter 
 
 # Game over scenarios:
 - When the health is zero.
-- When the satiety is zero.
 - When the age reaches maximum age.
 - The user selects to quit.
