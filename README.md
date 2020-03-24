@@ -1,5 +1,9 @@
 # Demo2
 
+#Setup:
+- Clone this repo to your local machine using https://github.com/DashaLevchenko/Demo2.git
+- Use Java 8
+
 # Instructions:
 When the programm starts you need to enter your pet's name and click the "Create button". Please note that only Latin characters are allowed.
 After the valid name is entered you will be able to select 6 actions that will be applied to the Cat: Feed, Scold, Wash, Play, Stroke, Heal. You can either fulfill the needs of the pet by pressing the 6 six buttons in the specified order or just click on them randomly. Each action will change the pet state.
