@@ -3,7 +3,7 @@ package demo;
 
 import demo.exceptions.PetDiedException;
 import demo.exceptions.PetGrewUpException;
-import demo.util.UtilityMethods;
+import demo.util.UtilityMethod;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,6 +40,13 @@ public abstract class Animal implements Livable {
         this.name = name;
     }
 
+    /**
+     * Changes points of animal when pet asked to feed it.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toFeed() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);//add methods increase health
@@ -50,6 +57,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet asked to play with it.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toPlay() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
@@ -60,6 +74,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet do smth wrong.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toScold() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
@@ -69,6 +90,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet asked to stroke its tummy.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toStroke() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
@@ -78,6 +106,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet was dirty .
+     *
+     * @return
+     * @throws PetDiedException
+     * @throws PetGrewUpException
+     */
     @Override
     public String toWash() throws PetDiedException, PetGrewUpException {
         healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);
@@ -87,6 +122,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet was ill.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toHeal() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(18, healthPoint, MAX_HEALTH_POINT);
@@ -96,18 +138,19 @@ public abstract class Animal implements Livable {
         changeAge();
         return checkNextAction();
     }
+
     /**
-     * Predicted next action with calculate percentages.
+     * Predicts next action with calculate percentages.
      *
      * @return
      */
     public String checkNextAction() {
         HashMap<Double, String> sp = new HashMap<>();
 
-        sp.put(UtilityMethods.calculatePercent(healthPoint, MAX_HEALTH_POINT), "healthPoint");
-        sp.put(UtilityMethods.calculatePercent(happiness, MAX_HAPPINESS), "happiness");
-        sp.put(UtilityMethods.calculatePercent(satiety, MAX_SATIETY), "satiety");
-        sp.put(UtilityMethods.calculatePercent(purity, MAX_PURITY), "purity");
+        sp.put(UtilityMethod.calculatePercent(healthPoint, MAX_HEALTH_POINT), "healthPoint");
+        sp.put(UtilityMethod.calculatePercent(happiness, MAX_HAPPINESS), "happiness");
+        sp.put(UtilityMethod.calculatePercent(satiety, MAX_SATIETY), "satiety");
+        sp.put(UtilityMethod.calculatePercent(purity, MAX_PURITY), "purity");
         Double min = Collections.min(sp.keySet());
 
         String message = null;
@@ -116,7 +159,7 @@ public abstract class Animal implements Livable {
                 message = "Something wrong, I'm feeling bad...";
                 break;
             case "happiness":
-                if (UtilityMethods.calculatePercent(happiness, MAX_HAPPINESS) < 50) {
+                if (UtilityMethod.calculatePercent(happiness, MAX_HAPPINESS) < 50) {
                     message = "Play with me!";
                 } else {
                     message = "Purrr! Scratch my tummy!";
@@ -160,7 +203,7 @@ public abstract class Animal implements Livable {
     }
 
     /**
-     * Change current age on 0.5 points.
+     * Changes current age on 0.5 points.
      *
      * @throws PetGrewUpException if the animal age >= MAX_AGE
      */
@@ -173,22 +216,20 @@ public abstract class Animal implements Livable {
     }
 
     /**
-     * Changes current points of animal.
+     * Changes current points of animal, if point less 0 throws exception.
      *
      * @param changeableValue on how much changes point.
-     * @param currentValue which point changes.
-     * @param maxValue constant of maximum animal point.
+     * @param currentValue    which point changes.
+     * @param maxValue        constant of maximum animal point.
      * @return
      * @throws PetDiedException when point less then 0.
      */
     private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
         int newValue = currentValue + changeableValue;
-        if (newValue > 0) {
-            return Math.min(newValue, maxValue);
-        } else {
+        if (healthPoint < 0 || newValue < 0) {
             throw new PetDiedException("Your pet is dead. Game over.");
+        } else {
+            return Math.min(newValue, maxValue);
         }
     }
-
-
 }
