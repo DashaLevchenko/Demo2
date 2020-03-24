@@ -40,6 +40,13 @@ public abstract class Animal implements Livable {
         this.name = name;
     }
 
+    /**
+     * Changes points of animal when pet asked to feed it.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toFeed() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);//add methods increase health
@@ -50,6 +57,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet asked to play with it.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toPlay() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
@@ -60,6 +74,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet do smth wrong.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toScold() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
@@ -69,6 +90,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet asked to stroke its tummy.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toStroke() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
@@ -78,6 +106,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet was dirty .
+     *
+     * @return
+     * @throws PetDiedException
+     * @throws PetGrewUpException
+     */
     @Override
     public String toWash() throws PetDiedException, PetGrewUpException {
         healthPoint = changeConditions(2, healthPoint, MAX_HEALTH_POINT);
@@ -87,6 +122,13 @@ public abstract class Animal implements Livable {
         return checkNextAction();
     }
 
+    /**
+     * Changes points of animal when pet was ill.
+     *
+     * @return
+     * @throws PetGrewUpException
+     * @throws PetDiedException
+     */
     @Override
     public String toHeal() throws PetGrewUpException, PetDiedException {
         healthPoint = changeConditions(18, healthPoint, MAX_HEALTH_POINT);
@@ -98,7 +140,7 @@ public abstract class Animal implements Livable {
     }
 
     /**
-     * Predicted next action with calculate percentages.
+     * Predicts next action with calculate percentages.
      *
      * @return
      */
@@ -161,7 +203,7 @@ public abstract class Animal implements Livable {
     }
 
     /**
-     * Change current age on 0.5 points.
+     * Changes current age on 0.5 points.
      *
      * @throws PetGrewUpException if the animal age >= MAX_AGE
      */
@@ -174,7 +216,7 @@ public abstract class Animal implements Livable {
     }
 
     /**
-     * Changes current points of animal.
+     * Changes current points of animal, if point less 0 throws exception.
      *
      * @param changeableValue on how much changes point.
      * @param currentValue    which point changes.
