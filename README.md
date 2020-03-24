@@ -3,7 +3,7 @@
 #Setup:
 - Clone this repo to your local machine using [demo](https://github.com/DashaLevchenko/Demo2.git)
 - Use Java 8
-- Copy "style.css" and "TamagochiView.fxml" to output path ".../Demo2/gui", if this files aren't exist in output path ".../Demo2/gui"
+- Copy "style.css" and "TamagochiView.fxml" to output path ".../Demo2/gui", if this files aren't exist in output path ".../Demo2/gui".
 
 # Instructions:
 When the programm starts you need to enter your pet's name and click the "Create button". Please note that only Latin characters are allowed.
