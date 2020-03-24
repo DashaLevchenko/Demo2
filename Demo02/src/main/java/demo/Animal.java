@@ -96,6 +96,7 @@ public abstract class Animal implements Livable {
         changeAge();
         return checkNextAction();
     }
+
     /**
      * Predicted next action with calculate percentages.
      *
@@ -176,19 +177,17 @@ public abstract class Animal implements Livable {
      * Changes current points of animal.
      *
      * @param changeableValue on how much changes point.
-     * @param currentValue which point changes.
-     * @param maxValue constant of maximum animal point.
+     * @param currentValue    which point changes.
+     * @param maxValue        constant of maximum animal point.
      * @return
      * @throws PetDiedException when point less then 0.
      */
     private int changeConditions(int changeableValue, int currentValue, int maxValue) throws PetDiedException {
         int newValue = currentValue + changeableValue;
-        if (newValue > 0) {
-            return Math.min(newValue, maxValue);
-        } else {
+        if (healthPoint < 0 || newValue < 0) {
             throw new PetDiedException("Your pet is dead. Game over.");
+        } else {
+            return Math.min(newValue, maxValue);
         }
     }
-
-
 }
