@@ -83,7 +83,7 @@ public abstract class Animal implements Livable {
      */
     @Override
     public String toScold() throws PetGrewUpException, PetDiedException {
-        healthPoint = changeConditions(-10, healthPoint, MAX_HEALTH_POINT);
+        healthPoint = changeConditions(-2, healthPoint, MAX_HEALTH_POINT);
         happiness = changeConditions(-2, happiness, MAX_HAPPINESS);
         satiety = changeConditions(-1, satiety, MAX_SATIETY);
         changeAge();
