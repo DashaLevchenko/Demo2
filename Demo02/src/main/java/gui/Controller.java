@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 public class Controller {
 
     public static final int FAST_WAITING_MILLISECOND = 2000;
-    public static final int SLOW_WAITING_MILLISECONDS = 3500;
 
     @FXML
     private ProgressBar satiety;
@@ -248,7 +247,13 @@ public class Controller {
                 anchorPaneWithInterface.setDisable(false);
                 catNameLabel.setText(inputName);
                 printThinkCloudMessage("Hello, my name is " + cat.getName());
-                waitBeforeAction(acton -> printNextAction(cat.checkNextAction()), SLOW_WAITING_MILLISECONDS);
+                waitBeforeAction(action -> {
+                    try {
+                        printNextAction(cat.checkNextAction());
+                    } catch (PetDiedException e) {
+                        printGameOverException(e.getMessage());
+                    }
+                }, FAST_WAITING_MILLISECOND);
             } else {
                 nameErrorLabel.setVisible(false);
                 nameErrorLabelForCharacters.setVisible(true);
