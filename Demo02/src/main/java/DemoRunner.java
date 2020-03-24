@@ -1,5 +1,8 @@
 import gui.Run;
 
+/**
+ * Class run application tamaghotchi
+ */
 public class DemoRunner {
     /**
      * Start point of the program

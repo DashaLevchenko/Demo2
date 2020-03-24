@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Class of pet.
  */
-public class Cuckoo extends Animal{
+public class Cuckoo extends Animal {
 
     public Cuckoo(String name) {
         super(name);
@@ -19,8 +19,9 @@ public class Cuckoo extends Animal{
     /**
      * Pet print it sound.
      *
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String makeSound() throws PetGrewUpException, PetDiedException {
         String sound = "Cuckoooo";
@@ -30,8 +31,9 @@ public class Cuckoo extends Animal{
     /**
      * Pet run away.
      *
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String flyAway() throws PetGrewUpException, PetDiedException {
         String message = "I was offended. Goodbye!";
@@ -41,9 +43,10 @@ public class Cuckoo extends Animal{
     /**
      * Ask pet how long are you live.
      *
-     * @param age
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @param age take pet age
+     * @return message and random age
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String countAge(int age) throws PetDiedException, PetGrewUpException {
         Random random = new Random();
@@ -55,12 +58,12 @@ public class Cuckoo extends Animal{
     /**
      * Pet lay eggs, else make sound.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return method makeSound()
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String layAnEgg(boolean egg) throws PetGrewUpException, PetDiedException {
-        if (egg){
+        if (egg) {
             return flyAway();
         }
         return makeSound();

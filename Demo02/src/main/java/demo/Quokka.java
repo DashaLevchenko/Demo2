@@ -14,8 +14,9 @@ public class Quokka extends Animal {
     /**
      * Pet is happy.
      *
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String smile() throws PetGrewUpException, PetDiedException {
         String message = "Quokka always happy :))))))";
@@ -25,8 +26,9 @@ public class Quokka extends Animal {
     /**
      * Pet make photo with human.
      *
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String photoWithHuman() throws PetGrewUpException, PetDiedException {
         String message = "Click photo";
@@ -37,9 +39,9 @@ public class Quokka extends Animal {
     /**
      * Pet jump.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String toJump() throws PetGrewUpException, PetDiedException {
         String message = "Jump!!";

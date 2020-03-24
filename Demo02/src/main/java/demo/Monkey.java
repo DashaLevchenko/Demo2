@@ -7,15 +7,16 @@ import demo.exceptions.PetGrewUpException;
  * Class of pet.
  */
 public class Monkey extends Animal {
-    public Monkey (String name) {
+    public Monkey(String name) {
         super(name);
     }
 
     /**
      * Pet washes up.
      *
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String toWashDishes() throws PetGrewUpException, PetDiedException {
         String message = "Oh no, dirty dishes again!";
@@ -23,10 +24,12 @@ public class Monkey extends Animal {
     }
 
 
-    /*** Pet dances.
-     * *
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+    /**
+     * Pet dances.
+     *
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String toDance() throws PetGrewUpException, PetDiedException {
         String message = "Everybody dance now!";
@@ -36,9 +39,9 @@ public class Monkey extends Animal {
     /**
      * Pet eats.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return message with action
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException   when pet health point less then 0
      */
     public String toEat() throws PetGrewUpException, PetDiedException {
         String message = "Mmm, time to fill in my belly";

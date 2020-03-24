@@ -43,9 +43,9 @@ public abstract class Animal implements Livable {
     /**
      * Changes points of animal when pet asked to feed it.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return Predicts next action.
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException when pet health point less then 0
      */
     @Override
     public String toFeed() throws PetGrewUpException, PetDiedException {
@@ -60,9 +60,9 @@ public abstract class Animal implements Livable {
     /**
      * Changes points of animal when pet asked to play with it.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return Predicts next action.
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException when pet health point less then 0
      */
     @Override
     public String toPlay() throws PetGrewUpException, PetDiedException {
@@ -77,9 +77,9 @@ public abstract class Animal implements Livable {
     /**
      * Changes points of animal when pet do smth wrong.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return Predicts next action.
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException when pet health point less then 0
      */
     @Override
     public String toScold() throws PetGrewUpException, PetDiedException {
@@ -93,9 +93,9 @@ public abstract class Animal implements Livable {
     /**
      * Changes points of animal when pet asked to stroke its tummy.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return Predicts next action.
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException when pet health point less then 0
      */
     @Override
     public String toStroke() throws PetGrewUpException, PetDiedException {
@@ -109,9 +109,9 @@ public abstract class Animal implements Livable {
     /**
      * Changes points of animal when pet was dirty .
      *
-     * @return
-     * @throws PetDiedException
-     * @throws PetGrewUpException
+     * @return Predicts next action.
+     * @throws PetDiedException when pet health point less then 0
+     * @throws PetGrewUpException when pet age more than MAX_AGE
      */
     @Override
     public String toWash() throws PetDiedException, PetGrewUpException {
@@ -125,9 +125,9 @@ public abstract class Animal implements Livable {
     /**
      * Changes points of animal when pet was ill.
      *
-     * @return
-     * @throws PetGrewUpException
-     * @throws PetDiedException
+     * @return Predicts next action.
+     * @throws PetGrewUpException when pet age more than MAX_AGE
+     * @throws PetDiedException when pet health point less then 0
      */
     @Override
     public String toHeal() throws PetGrewUpException, PetDiedException {
@@ -142,7 +142,7 @@ public abstract class Animal implements Livable {
     /**
      * Predicts next action with calculate percentages.
      *
-     * @return
+     * @return message with pet desire
      */
     public String checkNextAction() throws PetDiedException {
         if (healthPoint <= 0) {
@@ -224,7 +224,7 @@ public abstract class Animal implements Livable {
      * @param changeableValue on how much changes point.
      * @param currentValue    which point changes.
      * @param maxValue        constant of maximum animal point.
-     * @return
+     * @return smaller point 
      * @throws PetDiedException when point 0 or less then 0.
      */
     private int changeConditions(int changeableValue, int currentValue, int maxValue) {
