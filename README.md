@@ -1,6 +1,6 @@
 # Demo2
 
-#Setup:
+# Setup:
 - Clone this repo to your local machine using [demo](https://github.com/DashaLevchenko/Demo2.git)
 - Use Java 8
 - Copy "style.css" and "TamagochiView.fxml" to output path ".../Demo2/gui", if this files aren't exist in output path ".../Demo2/gui".
